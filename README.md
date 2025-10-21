@@ -145,6 +145,9 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
       ├─ 선도 출원인 및 트렌드 요약
       └─ 국내 적용성 및 리스크 포인트
 
+```
+---
+
 ## 9️⃣ OUTPUT ToC (Report 목차)
 
 1. **SUMMARY**
@@ -167,25 +170,30 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
 
 ## 🔟 DIRECTORY STRUCTURE
 
-ai-semiconductor-report/
-├── agents/
-│ ├── patent_search_agent.py
-│ ├── tech_evaluation_agent.py
-│ ├── market_evaluation_agent.py
-│ ├── suitability_agent.py
-│ └── report_agent.py
-├── state/
-│ ├── patent_state.py
-│ ├── tech_state.py
-│ ├── market_state.py
-│ ├── suitability_state.py
-│ └── final_state.py
-├── rag/
-│ ├── build_index.py
-│ ├── chroma_store/
-│ └── embeddings/
-└── main.py
 
+```markdown
+ai-semiconductor-report/
+├── agents/                          # 에이전트 로직 모음
+│   ├── patent_search_agent.py       # 특허 수집 Agent
+│   ├── tech_evaluation_agent.py     # 기술성 평가 Agent
+│   ├── market_evaluation_agent.py   # 시장성 평가 Agent
+│   ├── suitability_agent.py         # 기술+시장 적합성 Agent
+│   └── report_agent.py              # 보고서 생성 Agent
+│
+├── state/                           # 상태(State) 모델 정의
+│   ├── patent_state.py              # 특허 수집 결과 저장 State
+│   ├── tech_state.py                # 기술성 평가 결과 저장 State
+│   ├── market_state.py              # 시장성 평가 결과 저장 State
+│   ├── suitability_state.py         # 통합 적합성 평가 결과 State
+│   └── final_state.py               # 전체 결과 통합 State
+│
+├── rag/                             # RAG 임베딩 및 벡터 검색 관련
+│   ├── build_index.py               # 벡터 인덱스 구축 스크립트
+│   ├── chroma_store/                # Chroma 벡터 저장소
+│   └── embeddings/                  # 임베딩된 문서 저장 위치
+│
+└── main.py                          # LangGraph 메인 워크플로우 실행 파일
+```
 
 ---
 
