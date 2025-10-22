@@ -90,7 +90,7 @@ def _fetch_details_abstract_full(patent_id: Optional[str]) -> Optional[str]:
 
 def _build_query(tech_name: str) -> str:
     tech = (tech_name or "HBM").strip()
-    return f'({tech} OR "{tech}") (AI OR accelerator OR processor) 2024'
+    return f'({tech} OR "{tech}") (AI OR accelerator OR processor)'
 
 
 def patent_search_node(state: PatentState) -> PatentState:

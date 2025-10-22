@@ -6,7 +6,7 @@
 
 ---
 
-## SUMMARY
+## 📌 SUMMARY
 
 ### 🎯 Objective
 
@@ -70,11 +70,11 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
 
 ## 4️⃣ FEATURES
 
-- **특허 검색 자동화** : SerpAPI로 ‘AI 반도체’ 하위 키워드 기반 최신 특허 수집
-- **기술성 평가** : GPT로 독창성·트렌드 적합성 점수화 (0~5점)
-- **시장성 평가** : 산업 적용성 및 시장 성장성 평가 (0~5점)
-- **적합성 판단** : 기술 + 시장 통합 평가, 유망 특허 선별
-- **보고서 생성** : "한국 AI 반도체 기술 경쟁력 보고서" 자동 출력
+- 🔍 **특허 검색 자동화** : SerpAPI로 ‘AI 반도체’ 하위 키워드 기반 최신 특허 수집
+- 🧠 **기술성 평가** : GPT로 독창성·트렌드 적합성 점수화 (0~5점)
+- 💡 **시장성 평가** : 산업 적용성 및 시장 성장성 평가 (0~5점)
+- ⚖️ **적합성 판단** : 기술 + 시장 통합 평가, 유망 특허 선별
+- 📄 **보고서 생성** : "한국 AI 반도체 기술 경쟁력 보고서" 자동 출력
 
 ---
 
@@ -113,7 +113,8 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
 | **TechEvaluationAgent** | 기술 독창성·트렌드 적합성 평가                  | TechState         |
 | **MarketEvaluationAgent** | 시장성 및 산업 적용성 평가                  | MarketState       |
 | **SuitabilityAgent** | 기술 + 시장 통합 적합성 판단                       | SuitabilityState  |
-| **ReportAgent**      | 전체 상태 기반 보고서 생성                         | ReportState       |
+| **ReportAgent**  git branch backup/after-reset
+    | 전체 상태 기반 보고서 생성                         | ReportState       |
 
 ---
 
@@ -196,11 +197,11 @@ ai-semiconductor-report/
 │   ├── suitability_state.py         
 │   ├── report_state.py              
 │   └── workflow_state.py            
-│── data/   
+│  
 ├── rag/                             
 │   ├── build_index.py               
 │   ├── chroma_store/                
-│                     
+│   └── embeddings/                  
 │
 └── main.py                     
 ```
