@@ -1,0 +1,17 @@
+{
+  "tech_name": "HBM",
+  "patent_id": "patent/US20250054860A1/en",
+  "originality_score": 0.0,
+  "cpc_distribution": {},
+  "statistics": {
+    "base_cpc_count": 0,
+    "expanded_cpc_count": 0,
+    "total_cpc_count": 0,
+    "unique_cpc_count": 0,
+    "citations_analyzed": 0,
+    "patents_expanded": 0
+  },
+  "search_output_path": "C:\\workspace\\skala_gai\\Patent-analysis-report\\output\\patent_search\\HBM_result.json",
+  "originality_output_path": "C:\\workspace\\skala_gai\\Patent-analysis-report\\output\\originality\\patent_US20250054860A1_en_originality.json",
+  "error": null
+}

@@ -1,0 +1,54 @@
+{
+  "success": true,
+  "target_patent": {
+    "title": "Multi-chip module (MCM) with multi-port unified memory",
+    "abstract": "1. A chiplet-based multi-chip module (MCM) to couple to a base substrate, comprising: a package substrate that is separate from the base substrate; a first processing integrated circuit (IC) chiplet coupled to the package substrate; a second processing IC chiplet coupled to the package substrate;",
+    "patent_id": "patent/US12314567B1/en",
+    "publication_number": "US12314567B1",
+    "publication_date": "2025-05-27",
+    "filing_date": "2024-05-02",
+    "priority_date": "2021-11-25",
+    "assignee": "Eliyan Corporation",
+    "inventor": "Ramin Farjadrad",
+    "link": "https://patents.google.com/patent/US12314567B1/en",
+    "pdf": "https://patentimages.storage.googleapis.com/de/b9/8a/7a71e63b74a4cb/US12314567B1.pdf"
+  },
+  "originality_score": 0.9964664749057727,
+  "statistics": {
+    "base_cpc_count": 130,
+    "expanded_cpc_count": 438,
+    "total_cpc_count": 568,
+    "unique_cpc_count": 384,
+    "citations_analyzed": 5,
+    "patents_expanded": 10
+  },
+  "cpc_distribution": {
+    "H01L25/0657": 6,
+    "H01L25/50": 6,
+    "H01L25/105": 5,
+    "H01L2224/16227": 5,
+    "H10K59/8731": 5,
+    "H10K71/00": 5,
+    "H01L2225/1058": 4,
+    "H01L24/16": 4,
+    "H01L21/6835": 4,
+    "H01L2221/68345": 4,
+    "H01L2224/32225": 4,
+    "H01L23/49816": 4,
+    "H01L51/56": 4,
+    "H10K50/844": 4,
+    "H10K2102/00": 4,
+    "H01L2225/06551": 3,
+    "H01L2225/06582": 3,
+    "H01L2225/1094": 3,
+    "H01L2924/01079": 3,
+    "H01L2924/14": 3
+  },
+  "query": "(HBM OR \"High Bandwidth Memory\") (AI OR accelerator OR processor)",
+  "params": {
+    "country": "US",
+    "max_backward_refs": 5,
+    "max_cpc_refs": 2,
+    "cpc_top_k": 5
+  }
+}

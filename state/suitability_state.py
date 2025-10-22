@@ -1,0 +1,2 @@
+"""SuitabilityState model placeholder."""
+
