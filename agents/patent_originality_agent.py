@@ -15,24 +15,20 @@ try:
 except Exception:
     _OPENAI_OK = False
 
-# State types (using dict for compatibility)
-class OriginalityState(TypedDict, total=False):
-    tech_name: str
-    first_item: Dict[str, Any]
-    items: List[Dict[str, Any]]
-    target_patent_id: str
-    originality_score: float
-    cpc_distribution: Dict[str, int]
-    statistics: Dict[str, Any]
-    originality_output_path: str
-    search_output_path: str
-    error: str
-    num: int
-    page: int
-    ptype: str
-    query: str
-    serpapi_url: str
-    count: int
+# State types (fallbacks)
+try:
+    from state.originality_state import OriginalityState  # type: ignore
+except Exception:
+    class OriginalityState(TypedDict, total=False):
+        tech_name: str
+        first_item: Dict[str, Any]
+        items: List[Dict[str, Any]]
+        target_patent_id: str
+        originality_score: float
+        cpc_distribution: Dict[str, int]
+        statistics: Dict[str, Any]
+        originality_output_path: str
+        error: str
 
 load_dotenv()
 SERPAPI_KEY = os.getenv("SERPAPI_KEY")
@@ -41,7 +37,7 @@ BASE_URL = "https://serpapi.com/search.json"
 
 def _fetch_patent_details(patent_id: str) -> Optional[Dict[str, Any]]:
     """
-    Fetch patent details from SerpAPI - NO normalization, exact same as test.py
+    OK: Simplified: No forced normalization, just like Patent_Scrapper_agent.py
     """
     if not patent_id:
         return None
@@ -71,7 +67,7 @@ def _fetch_patent_details(patent_id: str) -> Optional[Dict[str, Any]]:
 
 def _collect_cpc_from_citations(patent_id: str, max_refs: int = 5) -> tuple[List[str], List[str]]:
     """
-    Exact copy from test.py that works correctly
+    OK: Exact copy from Patent_Scrapper_agent.py (lines 226-281)
     """
     print(f"\n* Step: 인용 특허에서 CPC 수집 ({patent_id})")
     
@@ -109,7 +105,7 @@ def _collect_cpc_from_citations(patent_id: str, max_refs: int = 5) -> tuple[List
         if not cit_details:
             continue
         
-        # CPC 코드 추출
+        # OK: CPC 코드 추출 (Patent_Scrapper_agent.py lines 269-276)
         classifications = cit_details.get("classifications", []) or []
         cpc_count = 0
         for cls in classifications:
@@ -117,7 +113,7 @@ def _collect_cpc_from_citations(patent_id: str, max_refs: int = 5) -> tuple[List
                 all_cpc_codes.append(cls["code"])
                 cpc_count += 1
         
-        print(f"       -> CPC {cpc_count}개 수집")
+        print(f"       → CPC {cpc_count}개 수집")
         time.sleep(0.3)  # API 부하 방지
 
     print(f"\nOK: CPC 수집 완료: 총 {len(all_cpc_codes)}개 (고유 {len(set(all_cpc_codes))}개)\n")
@@ -126,7 +122,7 @@ def _collect_cpc_from_citations(patent_id: str, max_refs: int = 5) -> tuple[List
 
 def _convert_cpc_to_keywords(cpc_code: str) -> str:
     """
-    Exact copy from test.py
+    OK: Exact copy from Patent_Scrapper_agent.py (lines 51-99)
     """
     if not _OPENAI_OK:
         print(f"       Warn: OpenAI 모듈 없음. Fallback 사용")
@@ -142,12 +138,12 @@ Use concrete technical terms, avoid generic words like "AI", "computing", "archi
 Focus on physical components, processes, or structures.
 
 Examples:
-H01L25/065 -> chip stacking TSV interposer
-G06F12/0802 -> cache coherency protocol
-H01L23/31 -> thermal interface material heatsink
-G11C11/401 -> DRAM sense amplifier
+H01L25/065 → chip stacking TSV interposer
+G06F12/0802 → cache coherency protocol
+H01L23/31 → thermal interface material heatsink
+G11C11/401 → DRAM sense amplifier
 
-{cpc_code} ->"""
+{cpc_code} →"""
 
         response = client.chat.completions.create(
             model="gpt-4o-mini",
@@ -158,9 +154,12 @@ G11C11/401 -> DRAM sense amplifier
         
         keywords = response.choices[0].message.content.strip()
         
-        # Remove arrow or CPC code if included
+        # OK: 화살표나 CPC 코드가 포함되어 있으면 제거
+        if "→" in keywords:
+            keywords = keywords.split("→")[-1].strip()
         if "->" in keywords:
             keywords = keywords.split("->")[-1].strip()
+        # CPC 코드 자체가 포함되어 있으면 제거
         if cpc_code in keywords:
             keywords = keywords.replace(cpc_code, "").strip()
         
@@ -208,7 +207,7 @@ def _search_patents_with_keywords(keyword: str, num: int = 10, country: str = "U
 
 def _collect_cpc_from_patents(patent_ids: List[str]) -> List[str]:
     """
-    Exact copy from test.py
+    OK: Exact copy from Patent_Scrapper_agent.py (lines 396-424)
     """
     print(f"* Step: 확장 특허 {len(patent_ids)}개의 CPC 수집\n")
     
@@ -229,7 +228,7 @@ def _collect_cpc_from_patents(patent_ids: List[str]) -> List[str]:
                 cpc_count += 1
         
         if cpc_count > 0:
-            print(f"       -> CPC {cpc_count}개 추가")
+            print(f"       → CPC {cpc_count}개 추가")
         
         time.sleep(0.3)
     
@@ -239,7 +238,7 @@ def _collect_cpc_from_patents(patent_ids: List[str]) -> List[str]:
 
 def _calc_originality_index(cpc_codes: List[str]) -> float:
     """
-    Exact copy from test.py
+    OK: Exact copy from Patent_Scrapper_agent.py (lines 429-451)
     """
     if not cpc_codes:
         return 0.0
@@ -265,20 +264,17 @@ def patent_originality_node(state: OriginalityState) -> OriginalityState:
     
     # Check prerequisites
     if not SERPAPI_KEY:
-        return {**state, "error": "SERPAPI_KEY not set in environment variables"}
+        out = dict(state)
+        out["error"] = "SERPAPI_KEY not set in environment variables"
+        print("Error: Error: SERPAPI_KEY not configured")
+        return out  # type: ignore
 
     # Check if previous search had errors
     if state.get("error"):
-        print(f"Error: Previous step had error: {state.get('error')}")
-        return {**state, "error": f"Previous search failed: {state['error']}"}
-
-    # Ensure tech_name is passed through
-    tech_name = state.get("tech_name")
-    if not tech_name:
-        print("Error: tech_name not found in state")
-        return {**state, "error": "tech_name missing from previous step"}
-
-    print(f"* Technology: {tech_name}")
+        out = dict(state)
+        out["error"] = f"Previous search failed: {state['error']}"
+        print(f"Error: Cannot calculate originality: {state['error']}")
+        return out  # type: ignore
 
     # Pick target patent
     target_id = state.get("first_item", {}).get("patent_id") if state.get("first_item") else None
@@ -286,18 +282,19 @@ def patent_originality_node(state: OriginalityState) -> OriginalityState:
         target_id = state["items"][0].get("patent_id")
 
     if not target_id:
-        print("Error: No patent found to analyze")
-        return {**state, "error": "No target patent_id available from search results"}
+        out = dict(state)
+        out["error"] = "No target patent_id available from search results"
+        print("Error: Error: No patent found to analyze")
+        return out  # type: ignore
 
     print(f"* Target patent: {target_id}")
 
-    # Step 1: Collect CPC from citations
+    # Step 1: Collect CPC from citations (using Patent_Scrapper_agent.py logic)
     base_cpc, citation_ids = _collect_cpc_from_citations(target_id, max_refs=5)
 
     if not base_cpc:
-        print("Warn: No CPC codes found in citations")
-        return {
-            **state,
+        out = dict(state)
+        out.update({
             "target_patent_id": target_id,
             "originality_score": 0.0,
             "cpc_distribution": {},
@@ -310,27 +307,29 @@ def patent_originality_node(state: OriginalityState) -> OriginalityState:
                 "patents_expanded": 0,
             },
             "error": "No CPC codes found in citations - cannot calculate originality"
-        }
+        })
+        print("Warn: No CPC codes found in citations")
+        return out  # type: ignore
 
     # Step 2: Top-K CPC selection
     counter = Counter(base_cpc)
     top_k = [c for c, _ in counter.most_common(5)]
-    print(f"\nTop: Top {len(top_k)} CPC codes for expansion:")
+    print(f"\n🔝 Top {len(top_k)} CPC codes for expansion:")
     for i, code in enumerate(top_k, 1):
         print(f"  {i}. {code} (count: {counter[code]})")
 
     # Step 3: Convert CPC to keywords and expand
-    print(f"\n* Expanding patent pool via keyword search...")
+    print(f"\n🔄 Expanding patent pool via keyword search...")
     expanded_ids: List[str] = []
     seen = {target_id, *citation_ids}
     
     for i, code in enumerate(top_k, 1):
         print(f"\n  [{i}/{len(top_k)}] Processing CPC: {code}")
         kw = _convert_cpc_to_keywords(code)
-        print(f"    -> Keywords: {kw}")
+        print(f"    → Keywords: {kw}")
         
         ids = _search_patents_with_keywords(kw, num=10, country="US")
-        print(f"    -> Found {len(ids)} patents")
+        print(f"    → Found {len(ids)} patents")
         
         new_count = 0
         for pid in ids:
@@ -338,7 +337,7 @@ def patent_originality_node(state: OriginalityState) -> OriginalityState:
                 expanded_ids.append(pid)
                 new_count += 1
         
-        print(f"    -> Added {new_count} new patents")
+        print(f"    → Added {new_count} new patents")
         time.sleep(0.3)
 
     print(f"\nOK: Total expanded patents: {len(expanded_ids)}")
@@ -364,17 +363,18 @@ def patent_originality_node(state: OriginalityState) -> OriginalityState:
     print(f"* Originality Score: {originality:.4f}")
     print(f"* Statistics:")
     for key, val in stats.items():
-        print(f"  - {key}: {val}")
+        print(f"  • {key}: {val}")
     print("="*60)
 
-    # Build output state - ensure all fields from input are preserved
-    out: OriginalityState = {**state}
-    out.update({
-        "target_patent_id": target_id,
-        "originality_score": originality,
-        "cpc_distribution": dist,
-        "statistics": stats,
-    })
+    out: OriginalityState = dict(state)
+    out.update(
+        {
+            "target_patent_id": target_id,
+            "originality_score": originality,
+            "cpc_distribution": dist,
+            "statistics": stats,
+        }
+    )
 
     # Persist JSON
     try:
@@ -394,13 +394,16 @@ def patent_originality_node(state: OriginalityState) -> OriginalityState:
                 ensure_ascii=False,
                 indent=2,
             )
-        out["originality_output_path"] = out_path
+        out["originality_output_path"] = out_path  # type: ignore
         print(f"💾 Originality results saved: {out_path}")
     except Exception as e:
-        out["error"] = f"Failed to write originality JSON: {e}"
+        out["error"] = f"Failed to write originality JSON: {e}"  # type: ignore
         print(f"Warn: Failed to save results: {e}")
 
     return out
 
 
 __all__ = ["patent_originality_node", "OriginalityState"]
+
+
+

@@ -2,7 +2,6 @@
 
 import os
 import json
-import argparse
 from typing import Any, Dict
 from dotenv import load_dotenv
 
@@ -14,9 +13,6 @@ except Exception:
 
 from agents.patent_search_agent import patent_search_node
 from agents.patent_originality_agent import patent_originality_node
-
-
-DEFAULT_TECH_NAME = "Neuromorphic"  # Change here; everything follows this
 
 
 def build_graph():
@@ -39,77 +35,38 @@ def build_graph():
 
 def main():
     load_dotenv()
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--tech_name", type=str, default=DEFAULT_TECH_NAME)
-    parser.add_argument("--num", type=int, default=10)
-    parser.add_argument("--page", type=int, default=1)
-    args = parser.parse_args()
-
-    tech_name = args.tech_name
-
-    print("="*70)
-    print(f"🚀 Patent Analysis Pipeline Starting")
-    print("="*70)
-    print(f"Technology: {tech_name}")
-    print(f"Number of patents: {args.num}")
-    print(f"Page: {args.page}")
-    print("="*70 + "\n")
+    tech_name = os.environ.get("TECH_NAME", "HBM")
 
     app = build_graph()
-    init_state: Dict[str, Any] = {
-        "tech_name": tech_name, 
-        "num": args.num, 
-        "page": args.page, 
-        "ptype": "PATENT"
-    }
+    init_state: Dict[str, Any] = {"tech_name": tech_name, "num": 10, "page": 1, "ptype": "PATENT"}
 
+    result = app.invoke(init_state)
+
+    # Write optional summary
     try:
-        result = app.invoke(init_state)
-        
-        # Debug: Print result keys
-        print("\n" + "="*70)
-        print("📊 Pipeline Results")
-        print("="*70)
-        print(f"Result keys: {list(result.keys())}")
-        
-        if result.get("error"):
-            print(f"❌ Error occurred: {result.get('error')}")
-        else:
-            print(f"✅ Pipeline completed successfully")
-            
-        # Write optional summary
-        try:
-            base_dir = os.path.join(os.path.dirname(__file__), "output", "summary")
-            os.makedirs(base_dir, exist_ok=True)
-            patent_id = (result.get("first_item") or {}).get("patent_id") or result.get("target_patent_id") or "unknown"
-            # sanitize file name
-            safe_patent_id = ''.join(ch if (ch.isalnum() or ch in ('_','-')) else '_' for ch in str(patent_id))
-            out_path = os.path.join(base_dir, f"{tech_name}_{safe_patent_id}_summary.json")
-            summary = {
-                "tech_name": tech_name,
-                "patent_id": patent_id,
-                "originality_score": result.get("originality_score"),
-                "cpc_distribution": result.get("cpc_distribution"),
-                "statistics": result.get("statistics"),
-                "search_output_path": result.get("search_output_path"),
-                "originality_output_path": result.get("originality_output_path"),
-                "error": result.get("error"),
-            }
-            with open(out_path, "w", encoding="utf-8") as f:
-                json.dump(summary, f, ensure_ascii=False, indent=2)
-            print(f"💾 Summary saved: {out_path}")
-        except Exception as e:
-            print(f"⚠️ Failed to write summary: {e}")
-
-        print(f"\n{'='*70}")
-        print(f"🎯 Final Originality Score: {result.get('originality_score', 'N/A')}")
-        print(f"{'='*70}\n")
-        
+        base_dir = os.path.join(os.path.dirname(__file__), "output", "summary")
+        os.makedirs(base_dir, exist_ok=True)
+        patent_id = (result.get("first_item") or {}).get("patent_id") or result.get("target_patent_id") or "unknown"
+        # sanitize file name
+        safe_patent_id = ''.join(ch if (ch.isalnum() or ch in ('_','-')) else '_' for ch in str(patent_id))
+        out_path = os.path.join(base_dir, f"{tech_name}_{safe_patent_id}_summary.json")
+        summary = {
+            "tech_name": tech_name,
+            "patent_id": patent_id,
+            "originality_score": result.get("originality_score"),
+            "cpc_distribution": result.get("cpc_distribution"),
+            "statistics": result.get("statistics"),
+            "search_output_path": result.get("search_output_path"),
+            "originality_output_path": result.get("originality_output_path"),
+            "error": result.get("error"),
+        }
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(summary, f, ensure_ascii=False, indent=2)
+        print(f"Summary saved: {out_path}")
     except Exception as e:
-        print(f"\n❌ Pipeline failed with exception: {e}")
-        import traceback
-        traceback.print_exc()
+        print(f"Failed to write summary: {e}")
+
+    print("Originality score:", result.get("originality_score"))
 
 
 if __name__ == "__main__":
