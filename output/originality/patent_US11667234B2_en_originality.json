@@ -1,0 +1,65 @@
+{
+  "target_patent_id": "patent/US11667234B2/en",
+  "originality_score": 0.8611111111111112,
+  "statistics": {
+    "base_cpc_count": 12,
+    "expanded_cpc_count": 0,
+    "total_cpc_count": 12,
+    "unique_cpc_count": 8,
+    "citations_analyzed": 3,
+    "patents_expanded": 0,
+    "api_calls_saved": "~11 calls (vs original)"
+  },
+  "cpc_distribution": {
+    "B60Q1/143": 2,
+    "F21S41/17": 1,
+    "F21S41/698": 1,
+    "B60Q2300/052": 1,
+    "B60Q2300/056": 2,
+    "B60Q2300/41": 2,
+    "B60Q2300/42": 2,
+    "F21S41/663": 1
+  },
+  "citation_patents": [
+    {
+      "title": "Optical unit",
+      "abstract": "PROBLEM TO BE SOLVED: To provide a technology to downsize an optical unit to be used in a vehicular lamp.SOLUTION: The optical unit 100 to be used in a vehicular lamp 1 for irradiating light of a light emitting element 202 includes a light emitting element mounting part 114, a reflector 130 which has a first reflection face 132 of a nearly elliptic shape and reflects the light of a light emitting element 202 fixed on the light emitting element mounting part 114, and a projection lens 150 for irradiating the light reflected by the reflector 130 in front of the lamp. In the optical unit 100, the light emitting element mounting part 114 is positioned in the vicinity of a first focal point F1 of the first reflection face 132, a rear focal point F of the projection lens 150 is positioned in the vicinity of a second focal point F2 of the first reflection face 132, and a lamp longitudinal direction position of the first focal point F1 of the first reflection face 132 is located on the same position as the second focal point F2 or forward rather than the second focal point F2.",
+      "patent_id": null,
+      "publication_number": "JP2012134091A",
+      "publication_date": "2012-07-12",
+      "filing_date": "2010-12-24",
+      "priority_date": "2010-12-24",
+      "assignee": null,
+      "inventor": null,
+      "link": null,
+      "pdf": "https://patentimages.storage.googleapis.com/d4/2b/9d/49d09e42b65c8d/JP2012134091A.pdf"
+    },
+    {
+      "title": "Light distribution control device for vehicle headlamp",
+      "abstract": "PROBLEM TO BE SOLVED: To provide a light distribution control device which can prevent dazzlement of a front vehicle and prevent the driver of the self vehicle from being annoyed by light distribution control.SOLUTION: This light distribution control device includes a means 101 for detecting the end of a vehicle presence range in which a vehicle exists in front of the self vehicle and means 102, 103, 104 for controllably following up the light distribution of the headlamp of the self vehicle so as to intercept the vehicle presence range based on a signal for detecting the end of the vehicle presence range. The device further includes a means 105 for delaying the detection signal when the end is moved to the vehicle presence range side. A change in the light distribution is suppressed by the delay to eliminate that the operator feels annoyance.",
+      "patent_id": null,
+      "publication_number": "JP2012183875A",
+      "publication_date": "2012-09-27",
+      "filing_date": "2011-03-04",
+      "priority_date": "2011-03-04",
+      "assignee": null,
+      "inventor": null,
+      "link": null,
+      "pdf": "https://patentimages.storage.googleapis.com/67/52/e3/a201a92a95d5c2/JP2012183875A.pdf"
+    },
+    {
+      "title": "Headlamp apparatus",
+      "abstract": "A headlamp device that appropriately manages the position of a vehicle when the number of vehicles ahead is large.  In a headlamp device capable of changing a light distribution pattern according to the presence of a front vehicle, the front vehicle is detected, and only the positions of the right and left front vehicles among a plurality of adjacent front vehicles are detected. Forward vehicle detection means 11 for estimating the front-end vehicle, and illumination area control means 12 for illuminating the front except for a series of light distribution areas from the position where the right-end front vehicle exists to the position where the left-end front vehicle exists. It is characterized by.  [Selection] Figure 3",
+      "patent_id": null,
+      "publication_number": "JP2013060140A",
+      "publication_date": "2013-04-04",
+      "filing_date": "2011-09-14",
+      "priority_date": "2011-09-14",
+      "assignee": null,
+      "inventor": null,
+      "link": null,
+      "pdf": "https://patentimages.storage.googleapis.com/28/cd/99/6b5be88b87d324/JP2013060140A.pdf"
+    }
+  ],
+  "expanded_patents": []
+}

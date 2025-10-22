@@ -7,7 +7,7 @@
     {
       "title": "Vertical interconnect elevator based on through silicon vias",
       "abstract": "Another aspect of the disclosure provides a Vertical Interconnect Elevator (VIE) chip based on Trough-Silicon-Vias (TSVs) in a silicon substrate or Trough-Glass-Vias (TGVs) in a glass substrate. The VIE chip is for use in the FPGA/HBM or logic/HBM stacked 3D CSP as disclosed and specified above.",
-      "patent_id": "patent/US20250054860A1/en",
+      "patent_id": "US20250054860A1",
       "publication_number": "US20250054860A1",
       "publication_date": "2025-02-13",
       "filing_date": "2024-10-29",
@@ -20,7 +20,7 @@
     {
       "title": "Techniques for optically coupling to photonic integrated circuits",
       "abstract": "The substrate 102 may have any suitable thickness, such as 0.2-5 millimeters. In addition to the PIC die 104, the substrate 102 may support additional components, such as integrated circuit components, processor units, memory devices, accelerator devices, and the like. The system 100 may be …",
-      "patent_id": "patent/CN115826153A/en",
+      "patent_id": "CN115826153A",
       "publication_number": "CN115826153A",
       "publication_date": "2023-03-21",
       "filing_date": "2022-08-03",
@@ -33,7 +33,7 @@
     {
       "title": "3D semiconductor device and structure with logic circuits and memory cells",
       "abstract": "may be processed to include metal 0 layer or metal 4 layer. This could be done using conventional processing including the appropriate high temperature processes (˜600-900° C.) such as gate oxidation, dopant activation, contact silicidation, and so on. Types of transistors and circuits may include …",
-      "patent_id": "patent/US12183699B2/en",
+      "patent_id": "US12183699B2",
       "publication_number": "US12183699B2",
       "publication_date": "2024-12-31",
       "filing_date": "2023-02-07",
@@ -46,7 +46,7 @@
     {
       "title": "Technologies for optical interposer mating with photonic integrated circuit …",
       "abstract": "In an illustrative embodiment, mechanical adhesive and a separate index-matching material are used as underfill between a photonic integrated circuit (PIC) die and an optical interposer. The index-matching material reduces coupling loss between waveguides of the PIC die and waveguides of the …",
-      "patent_id": "patent/US20250044533A1/en",
+      "patent_id": "US20250044533A1",
       "publication_number": "US20250044533A1",
       "publication_date": "2025-02-06",
       "filing_date": "2023-07-31",
@@ -59,7 +59,7 @@
     {
       "title": "Video upsampling using one or more neural networks",
       "abstract": "16. The processor of claim 12 , wherein the previous frame is in a color space that includes a luma value and two chroma values. 17. The processor of claim 12 , wherein the processor is to blend the upsampled frame with data from a previous frame using a luma channel. 18. The processor of claim 12 ,",
-      "patent_id": "patent/US12039694B2/en",
+      "patent_id": "US12039694B2",
       "publication_number": "US12039694B2",
       "publication_date": "2024-07-16",
       "filing_date": "2021-12-06",
@@ -72,7 +72,7 @@
     {
       "title": "Video prediction using one or more neural networks",
       "abstract": "32. A non-transitory machine-readable medium having stored thereon a set of instructions, which if performed by one or more processors, cause the one or more processors to at least: cause one or more neural networks to be trained to generate one or more objects within one or more images having a …",
-      "patent_id": "patent/US11902705B2/en",
+      "patent_id": "US11902705B2",
       "publication_number": "US11902705B2",
       "publication_date": "2024-02-13",
       "filing_date": "2019-09-03",
@@ -85,7 +85,7 @@
     {
       "title": "System and method for a safe and reliable autonomous vehicle",
       "abstract": "a second vector memory associated with the second vector processor, and A second direct memory access engine associated with the second vector processor. 20. The system-on-chip of claim 1 or 2, further characterized by: the programmable visual accelerator further comprises: digital signal processor …",
-      "patent_id": "patent/CN111587407B/en",
+      "patent_id": "CN111587407B",
       "publication_number": "CN111587407B",
       "publication_date": "2024-01-23",
       "filing_date": "2018-11-09",
@@ -98,7 +98,7 @@
     {
       "title": "Machine learning model for task and motion planning",
       "abstract": "6. The one or more processors of claim 2 , wherein the position information includes a 6 D pose of the one or more objects. 7. The one or more processors of claim 2 , wherein the state information is updated after the one or more tasks is accomplished. 8. A system comprising: one or more processors …",
-      "patent_id": "patent/US12390926B2/en",
+      "patent_id": "US12390926B2",
       "publication_number": "US12390926B2",
       "publication_date": "2025-08-19",
       "filing_date": "2020-10-28",
@@ -111,7 +111,7 @@
     {
       "title": "Training one or more neural networks using synthetic data",
       "abstract": "The processor of claim 1, wherein the one or more circuits are further for generating a reference image using a number of samples per pixel reconstructed with a filter using the determined jitter offset. 1. A system comprising one or more processors for training one or more neural networks based at …",
-      "patent_id": "patent/JP7696342B2/en",
+      "patent_id": "JP7696342B2",
       "publication_number": "JP7696342B2",
       "publication_date": "2025-06-20",
       "filing_date": "2021-10-25",
@@ -124,7 +124,7 @@
     {
       "title": "Image upsampling using one or more neural networks",
       "abstract": "6. The processor of claim 5, wherein the first blending weight and the second blending weight are determined by the one or more neural networks, and the first blending weight is higher than the second blending weight. 1. A system comprising: one or more processors for using one or more neural …",
-      "patent_id": "patent/JP7693658B2/en",
+      "patent_id": "JP7693658B2",
       "publication_number": "JP7693658B2",
       "publication_date": "2025-06-17",
       "filing_date": "2021-10-06",
@@ -138,7 +138,7 @@
   "first_item": {
     "title": "Vertical interconnect elevator based on through silicon vias",
     "abstract": "Another aspect of the disclosure provides a Vertical Interconnect Elevator (VIE) chip based on Trough-Silicon-Vias (TSVs) in a silicon substrate or Trough-Glass-Vias (TGVs) in a glass substrate. The VIE chip is for use in the FPGA/HBM or logic/HBM stacked 3D CSP as disclosed and specified above.",
-    "patent_id": "patent/US20250054860A1/en",
+    "patent_id": "US20250054860A1",
     "publication_number": "US20250054860A1",
     "publication_date": "2025-02-13",
     "filing_date": "2024-10-29",

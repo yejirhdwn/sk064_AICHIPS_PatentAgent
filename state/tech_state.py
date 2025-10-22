@@ -1,2 +1,0 @@
-"""TechState model placeholder."""
-
