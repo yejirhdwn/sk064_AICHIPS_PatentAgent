@@ -1,0 +1,277 @@
+{
+  "tech_name": "NPU",
+  "generated_at": "2025-10-23T15:11:31.720633",
+  "countries": [
+    {
+      "country_code": "US",
+      "country_name": "United States",
+      "total_patents": 3,
+      "successful_analyses": 2,
+      "avg_originality_score": 0.9915,
+      "avg_market_score": 0.725,
+      "avg_suitability_score": 0.8577,
+      "grade_distribution": {
+        "B": 1,
+        "S": 1
+      },
+      "patents": [
+        {
+          "country": "US",
+          "patent_id": "patent/US20090257751A1/en",
+          "title": "Aggregating Optical Network Device",
+          "abstract": "is an exemplary flow diagram for de-provisioning traffic flows according to one embodiment of the invention. FIG. 18 is an exemplary flow diagram for processing data packets into traffic flows and switching the traffic flows to optical circuits according to one embodiment of the invention. FIG. 19",
+          "publication_date": "2009-10-15",
+          "assignee": "Santosh Kumar Sadananda",
+          "originality_score": 0.9897842056932966,
+          "market_score": 0.7,
+          "market_size_score": 0.25,
+          "growth_potential_score": 0.2,
+          "commercialization_readiness": 0.25,
+          "suitability_score": 0.8425,
+          "final_grade": "B",
+          "application_domains": [
+            "Optical Network Hardware",
+            "Telecommunications",
+            "Data Centers",
+            "5G Networks",
+            "AI-Powered Communication"
+          ],
+          "market_rationale": "이 특허(US20090257751A1)는 광 회로로의 트래픽 흐름 전환을 위한 데이터 패킷 처리 기술을 다루고 있으며, 이는 2024년 138억 7천만 달러로 평가되는 광 연결 시장에서 중요한 역할을 할 수 있습니다. 이 시장은 2025년 153억 8천만 달러로 성장할 것으로 예상되며, 2024년부터 2028년까지 67억 8천만 달러의 성장을 기록할 것으로 보입니다. 또한, 상용화 준비도는 1~2년 내에 명확한 고객을 확보할 수 있는 수준으로 평가됩니다. 이러한 요소들은 이 특허 기술이 향후 통신 및 데이터 센터 분야에서 중요한 기여를 할 수 있음을 시사합니다.",
+          "llm_evaluation": {
+            "suitability_grade": "B",
+            "confidence_score": 0.85,
+            "key_strengths": [
+              "매우 높은 기술적 독창성",
+              "차별화된 기술적 접근",
+              "특정 틈새 시장에서의 가능성"
+            ],
+            "key_weaknesses": [
+              "제한된 시장 규모",
+              "낮은 성장 잠재력",
+              "상업화 준비도 부족"
+            ],
+            "investment_recommendation": "보류",
+            "risk_level": "보통",
+            "suitability_rationale": "이 특허(patent/US20090257751A1/en)는 매우 높은 기술적 독창성을 보유하고 있으며, 이는 혁신적인 기술적 접근을 의미합니다. 그러나 시장성 점수가 낮아 시장 규모와 성장 잠재력이 제한적임을 나타냅니다. 상업화 준비도가 낮아 실제 시장에서의 성공 가능성이 낮을 수 있습니다. 따라서, 이 기술은 특정 틈새 시장에서의 활용 가능성이 있지만, 대규모 상업화에는 도전이 따를 것입니다. 이러한 점을 고려할 때, 투자에 대한 추천은 보류하며, 시장 진입 전략을 재검토할 필요가 있습니다.",
+            "strategic_advice": "특허의 독창성을 살려 특정 틈새 시장을 타겟으로 한 마케팅 전략을 개발해야 합니다. 또한, 상업화 준비도를 높이기 위한 추가 연구 및 개발이 필요합니다."
+          }
+        },
+        {
+          "country": "US",
+          "patent_id": "patent/US20240266842A1/en",
+          "title": "Systems and methods for monitoring and managing battery systems",
+          "error": "No CPC codes in citations",
+          "originality_score": 0.0,
+          "market_score": 0.0,
+          "suitability_score": 0.0,
+          "final_grade": "N/A"
+        },
+        {
+          "country": "US",
+          "patent_id": "patent/US12126458B1/en",
+          "title": "Core allocation and power saving for multi-core network processing units …",
+          "abstract": "determine, based on the usage model, a power management scheme for multiple cores of a multi-core network processing unit operating on the network device; and send at least one command to the multi-core network processing unit to cause the multi-core network processing unit to operate according to …",
+          "publication_date": "2024-10-22",
+          "assignee": "Cisco Technology, Inc.",
+          "originality_score": 0.993302103879027,
+          "market_score": 0.75,
+          "market_size_score": 0.25,
+          "growth_potential_score": 0.25,
+          "commercialization_readiness": 0.25,
+          "suitability_score": 0.8728,
+          "final_grade": "S",
+          "application_domains": [
+            "Network Processing Units",
+            "Telecommunications",
+            "AI Hardware",
+            "Consumer Electronics",
+            "Automotive"
+          ],
+          "market_rationale": "이 특허(US12126458B1)는 다중 코어 네트워크 처리 장치의 전력 관리 및 코어 할당 기술을 다루고 있으며, 이는 통신 및 AI 하드웨어 시장에서 중요한 역할을 할 수 있습니다. 네트워크 처리 장치(NPU) 시장은 2024년 38억 5천만 달러에서 2033년까지 124억 5천만 달러에 이를 것으로 예상되며, CAGR은 12.3%에 달합니다. 또한, AI 반도체 시장은 2025년 150억 달러에 도달할 것으로 보이며, 이 기간 동안 25%의 성장률을 기록할 것으로 전망됩니다. 이 기술은 1~2년 내에 상용화가 가능할 것으로 보이며, 명확한 고객 기반이 존재합니다.",
+          "llm_evaluation": {
+            "suitability_grade": "S",
+            "confidence_score": 0.9,
+            "key_strengths": [
+              "매우 높은 기술적 독창성",
+              "우수한 시장 잠재력",
+              "혁신적인 기술 접근 방식"
+            ],
+            "key_weaknesses": [
+              "상업화 준비도가 낮음",
+              "시장 규모가 제한적임"
+            ],
+            "investment_recommendation": "추천",
+            "risk_level": "보통",
+            "suitability_rationale": "이 특허(patent/US12126458B1/en)는 매우 높은 기술적 독창성을 보유하고 있으며, 이는 혁신적인 NPU 기술의 개발을 통해 차별화된 경쟁력을 제공합니다. 시장성 점수는 양호하나, 시장 규모와 성장 잠재력이 상대적으로 낮아 상업화 준비도가 부족한 점이 아쉽습니다. 그러나 기술적 독창성이 높기 때문에 틈새 시장에서의 성공 가능성이 존재합니다. 따라서, 이 특허는 장기적인 투자 가치가 있으며, 적절한 마케팅 전략과 상업화 노력이 뒷받침된다면 성공적인 결과를 기대할 수 있습니다.",
+            "strategic_advice": "상업화 준비도를 높이기 위해 시장 조사 및 파트너십을 강화해야 합니다. 또한, 기술의 차별성을 강조하는 마케팅 전략을 수립하여 틈새 시장에서의 입지를 다져야 합니다."
+          }
+        }
+      ]
+    },
+    {
+      "country_code": "KR",
+      "country_name": "South Korea",
+      "total_patents": 3,
+      "successful_analyses": 2,
+      "avg_originality_score": 0.9933,
+      "avg_market_score": 0.725,
+      "avg_suitability_score": 0.8616,
+      "grade_distribution": {
+        "S": 1,
+        "A": 1
+      },
+      "patents": [
+        {
+          "country": "KR",
+          "patent_id": "patent/KR20220046014A/en",
+          "title": "The Ontact system controlling spray infection and air infection of Virus",
+          "error": "No CPC codes in citations",
+          "originality_score": 0.0,
+          "market_score": 0.0,
+          "suitability_score": 0.0,
+          "final_grade": "N/A"
+        },
+        {
+          "country": "KR",
+          "patent_id": "patent/KR102799500B1/en",
+          "title": "Electronic devices configured to perform inference operations",
+          "abstract": "The above at least one artificial neural network model includes an AI keyword recognition model and an AI gesture recognition model, In the above first mode, the neural network processing unit performs an inference operation of the AI keyword recognition model, but stops the inference operation of …",
+          "publication_date": "2025-04-25",
+          "assignee": "주식회사 딥엑스",
+          "originality_score": 0.9945831681860219,
+          "market_score": 0.75,
+          "market_size_score": 0.25,
+          "growth_potential_score": 0.25,
+          "commercialization_readiness": 0.25,
+          "suitability_score": 0.8756,
+          "final_grade": "S",
+          "application_domains": [
+            "AI Inference Market",
+            "Neural Processing Units (NPUs)",
+            "Edge Computing",
+            "Consumer Electronics",
+            "Automotive"
+          ],
+          "market_rationale": "이 특허(KR102799500B1)는 AI 키워드 인식 모델과 제스처 인식 모델을 포함하는 전자 장치에 관한 것으로, AI 추론 시장에서의 적용 가능성이 높습니다. AI 추론 시장은 2024년 762억 5천만 달러에서 2030년까지 2549억 8천만 달러로 성장할 것으로 예상되며, CAGR은 25% 이상입니다. 또한, 신경망처리장치(NPU) 시장은 2031년까지 24억 달러에 도달할 것으로 보이며, 이 기간 동안 17.5%의 성장률을 기록할 것으로 전망됩니다. 이 기술은 즉시 상용화가 가능하며, 다양한 산업에서의 수요가 증가하고 있습니다.",
+          "llm_evaluation": {
+            "suitability_grade": "S",
+            "confidence_score": 0.95,
+            "key_strengths": [
+              "매우 높은 기술적 독창성",
+              "우수한 시장 잠재력",
+              "혁신적인 NPU 기술"
+            ],
+            "key_weaknesses": [
+              "시장 규모 점수가 낮음",
+              "상업화 준비도가 부족함"
+            ],
+            "investment_recommendation": "추천",
+            "risk_level": "보통",
+            "suitability_rationale": "이 특허(patent/KR102799500B1/en)는 매우 높은 기술적 독창성을 바탕으로 혁신적인 NPU 기술을 제공합니다. 시장성 점수가 우수하나, 시장 규모와 상업화 준비도가 낮아 초기 투자 리스크가 존재합니다. 그러나 기술적 독창성 덕분에 틈새 시장에서의 경쟁력을 확보할 가능성이 높습니다. 따라서 장기적인 관점에서 이 특허는 투자 가치가 있으며, 시장의 성장 가능성을 고려할 때 긍정적인 평가를 받을 수 있습니다. 다만, 상업화 전략을 강화할 필요가 있습니다.",
+            "strategic_advice": "상업화 준비도를 높이기 위해 파트너십을 모색하고, 시장 진입 전략을 구체화해야 합니다. 또한, 기술의 적용 분야를 다양화하여 시장 규모를 확대하는 것이 중요합니다."
+          }
+        },
+        {
+          "country": "KR",
+          "patent_id": "patent/KR101997325B1/en",
+          "title": "Processor with memory array operable as either last level cache slice or neural …",
+          "abstract": "And the processor rewrites-validates the plurality of components and the memory array to rewrite-validate the LLC to transition from the second mode to the first mode. The method of claim 1, To rewrite-validate the LLC to transition from the first mode to the second mode, the processor processes a …",
+          "publication_date": "2019-10-01",
+          "assignee": "비아 얼라이언스 세미컨덕터 씨오., 엘티디.",
+          "originality_score": 0.9920317362607298,
+          "market_score": 0.7,
+          "market_size_score": 0.25,
+          "growth_potential_score": 0.25,
+          "commercialization_readiness": 0.2,
+          "suitability_score": 0.8475,
+          "final_grade": "A",
+          "application_domains": [
+            "Neural Processing Units (NPUs)",
+            "AI Computing",
+            "Edge Computing",
+            "Consumer Electronics",
+            "Automotive"
+          ],
+          "market_rationale": "이 특허(KR101997325B1)는 메모리 배열을 마지막 레벨 캐시 슬라이스 또는 신경망 처리 장치로 작동할 수 있는 프로세서에 관한 것입니다. 이 기술은 신경망 처리 장치(NPU) 시장에서 중요한 역할을 할 수 있으며, 해당 시장은 2024년 29억 달러에서 2031년까지 24억 달러에 이를 것으로 예상됩니다. 이 시장은 2025년부터 2031년까지 CAGR 17.5%로 성장할 것으로 보입니다. 현재 이 기술은 1~2년 내에 상용화될 가능성이 있으며, 프로토타입 검증이 완료된 상태입니다.",
+          "llm_evaluation": {
+            "suitability_grade": "A",
+            "confidence_score": 0.85,
+            "key_strengths": [
+              "매우 높은 기술적 독창성",
+              "차별화된 기술적 접근",
+              "AI 및 머신러닝 시장의 성장 가능성"
+            ],
+            "key_weaknesses": [
+              "제한된 시장 규모",
+              "상업화 준비 부족"
+            ],
+            "investment_recommendation": "추천",
+            "risk_level": "보통",
+            "suitability_rationale": "이 특허(patent/KR101997325B1/en)는 매우 높은 기술적 독창성을 지니고 있으며, 이는 혁신적인 NPU 기술로서 차별화된 접근을 보여줍니다. 그러나 시장성 점수가 낮아 시장 규모와 성장 잠재력이 제한적이라는 점은 우려 요소입니다. 상업화 준비도가 낮아 초기 투자 리스크가 존재하지만, AI 및 머신러닝 분야의 지속적인 성장 가능성은 이 기술의 장기적인 생존 가능성을 높일 수 있습니다. 따라서, 기술적 독창성을 바탕으로 틈새 시장을 겨냥한 전략이 필요합니다.",
+            "strategic_advice": "시장 진입을 위해 초기 파트너십을 통해 상업화 준비도를 높이는 것이 중요합니다. 또한, 기술의 응용 가능성을 다양한 산업에 확장하는 전략을 고려해야 합니다."
+          }
+        }
+      ]
+    },
+    {
+      "country_code": "JP",
+      "country_name": "Japan",
+      "total_patents": 3,
+      "successful_analyses": 0,
+      "avg_originality_score": 0.0,
+      "avg_market_score": 0.0,
+      "avg_suitability_score": 0.0,
+      "grade_distribution": {},
+      "patents": [
+        {
+          "country": "JP",
+          "patent_id": "patent/JP6250780B1/en",
+          "title": "Processor having memory array operable as cache memory or neural network unit …",
+          "error": "No CPC codes in citations",
+          "originality_score": 0.0,
+          "market_score": 0.0,
+          "suitability_score": 0.0,
+          "final_grade": "N/A"
+        },
+        {
+          "country": "JP",
+          "patent_id": "patent/JP6250781B1/en",
+          "title": "Processor with memory array operable as last level cache slice or neural …",
+          "error": "No CPC codes in citations",
+          "originality_score": 0.0,
+          "market_score": 0.0,
+          "suitability_score": 0.0,
+          "final_grade": "N/A"
+        },
+        {
+          "country": "JP",
+          "patent_id": "patent/JP6250782B1/en",
+          "title": "Processor having memory array operable as victim cache or neural network unit …",
+          "error": "No CPC codes in citations",
+          "originality_score": 0.0,
+          "market_score": 0.0,
+          "suitability_score": 0.0,
+          "final_grade": "N/A"
+        }
+      ]
+    }
+  ],
+  "gap_analysis": {
+    "korea_scores": {
+      "originality": 0.9933,
+      "market": 0.725,
+      "suitability": 0.8616
+    },
+    "comparisons": [
+      {
+        "country_code": "US",
+        "country_name": "United States",
+        "originality_gap": -0.0018,
+        "market_gap": 0.0,
+        "suitability_gap": -0.0039,
+        "overall_gap": -0.0019,
+        "status": "Behind"
+      }
+    ]
+  }
+}

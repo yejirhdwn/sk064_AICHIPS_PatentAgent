@@ -1,0 +1,35 @@
+{
+  "tech_name": "NPU",
+  "patent_id": "US20090257751A1",
+  "patent_title": "Aggregating Optical Network Device",
+  "market_size_score": 0.25,
+  "growth_potential_score": 0.2,
+  "commercialization_readiness": 0.25,
+  "market_score": 0.7,
+  "application_domains": [
+    "Optical Network Hardware",
+    "Telecommunications",
+    "Data Centers",
+    "5G Networks",
+    "AI-Powered Communication"
+  ],
+  "commercialization_potential": "Medium",
+  "market_rationale": "이 특허(US20090257751A1)는 광 회로로의 트래픽 흐름 전환을 위한 데이터 패킷 처리 기술을 다루고 있으며, 이는 2024년 138억 7천만 달러로 평가되는 광 연결 시장에서 중요한 역할을 할 수 있습니다. 이 시장은 2025년 153억 8천만 달러로 성장할 것으로 예상되며, 2024년부터 2028년까지 67억 8천만 달러의 성장을 기록할 것으로 보입니다. 또한, 상용화 준비도는 1~2년 내에 명확한 고객을 확보할 수 있는 수준으로 평가됩니다. 이러한 요소들은 이 특허 기술이 향후 통신 및 데이터 센터 분야에서 중요한 기여를 할 수 있음을 시사합니다.",
+  "demand_signals": [
+    "Increasing mobile data traffic",
+    "Expansion of 5G networks",
+    "Demand for high bandwidth communication",
+    "Growth in AI-powered applications",
+    "Investment in data centers"
+  ],
+  "sources": [
+    "[RAG] C:\\workspace\\skala_gai\\Patent-analysis-report\\data\\품목별ICT시장동향_AI반도체.pdf",
+    "[Web] Network Processing Unit (NPU) Market Insights (https://www.verifiedmarketreports.com/product/network-processing-unit-npu-market/)",
+    "[Web] Optical Interconnect Market Size, Share & Trends [ (https://www.fortunebusinessinsights.com/optical-interconnect-market-110836)",
+    "[Web] Optical Network Hardware Market to Grow by USD 6.7 (https://www.prnewswire.com/news-releases/optical-network-hardware-market-to-grow-by-usd-6-78-billion-from-2024-2028--driven-by-rising-mobile-data-traffic-ai-powered-report-reveals--technavio-302255830.html)",
+    "[Web] Outlook and Investment Analysis of Open Optical Ne (https://www.linkedin.com/pulse/open-optical-network-market-size-trends-outlook-investment-unlzf)",
+    "[Web] Neural processing unit Market: trends & opportunit (https://www.wiseguyreports.com/reports/neural-processing-unit-market)",
+    "[Web] Network Processing Unit Market Size & Share Report (https://www.grandviewresearch.com/industry-analysis/network-processing-unit-market-report)"
+  ],
+  "error": null
+}

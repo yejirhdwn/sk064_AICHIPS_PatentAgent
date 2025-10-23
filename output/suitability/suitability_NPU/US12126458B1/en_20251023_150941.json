@@ -1,0 +1,42 @@
+{
+  "tech_name": "NPU",
+  "originality_score": 0.993302103879027,
+  "market_score": 0.75,
+  "calculated_score": 0.8728,
+  "calculated_grade": "S",
+  "final_grade": "S",
+  "suitability_score": 0.8728,
+  "suitability_grade": "S",
+  "score_breakdown": {
+    "originality_raw": 0.993302103879027,
+    "originality_normalized": 0.9732084155161078,
+    "originality_weighted": 0.5353,
+    "market_score": 0.75,
+    "market_weighted": 0.3375,
+    "calculated_score": 0.8728,
+    "calculated_grade": "S"
+  },
+  "llm_evaluation": {
+    "suitability_grade": "S",
+    "confidence_score": 0.9,
+    "key_strengths": [
+      "매우 높은 기술적 독창성",
+      "우수한 시장 잠재력",
+      "혁신적인 기술 접근 방식"
+    ],
+    "key_weaknesses": [
+      "상업화 준비도가 낮음",
+      "시장 규모가 제한적임"
+    ],
+    "investment_recommendation": "추천",
+    "risk_level": "보통",
+    "suitability_rationale": "이 특허(patent/US12126458B1/en)는 매우 높은 기술적 독창성을 보유하고 있으며, 이는 혁신적인 NPU 기술의 개발을 통해 차별화된 경쟁력을 제공합니다. 시장성 점수는 양호하나, 시장 규모와 성장 잠재력이 상대적으로 낮아 상업화 준비도가 부족한 점이 아쉽습니다. 그러나 기술적 독창성이 높기 때문에 틈새 시장에서의 성공 가능성이 존재합니다. 따라서, 이 특허는 장기적인 투자 가치가 있으며, 적절한 마케팅 전략과 상업화 노력이 뒷받침된다면 성공적인 결과를 기대할 수 있습니다.",
+    "strategic_advice": "상업화 준비도를 높이기 위해 시장 조사 및 파트너십을 강화해야 합니다. 또한, 기술의 차별성을 강조하는 마케팅 전략을 수립하여 틈새 시장에서의 입지를 다져야 합니다."
+  },
+  "evaluation_summary": "'NPU' 기술 (등급: S, 점수: 0.87)\n\n평가: 이 특허(patent/US12126458B1/en)는 매우 높은 기술적 독창성을 보유하고 있으며, 이는 혁신적인 NPU 기술의 개발을 통해 차별화된 경쟁력을 제공합니다. 시장성 점수는 양호하나, 시장 규모와 성장 잠재력이 상대적으로 낮아 상업화 준비도가 부족한 점이 아쉽습니다. 그러나 기술적 독창성이 높기 때문에 틈새 시장에서의 성공 가능성이 존재합니다. 따라서, 이 특허는 장기적인 투자 가치가 있으며, 적절한 마케팅 전략과 상업화 노력이 뒷받침된다면 성공적인 결과를 기대할 수 있습니다.\n\n전략적 조언: 상업화 준비도를 높이기 위해 시장 조사 및 파트너십을 강화해야 합니다. 또한, 기술의 차별성을 강조하는 마케팅 전략을 수립하여 틈새 시장에서의 입지를 다져야 합니다.",
+  "patent_id": "patent/US12126458B1/en",
+  "patent_title": "Core allocation and power saving for multi-core network processing units …",
+  "market_size_score": 0.25,
+  "growth_potential_score": 0.25,
+  "commercialization_readiness": 0.25
+}

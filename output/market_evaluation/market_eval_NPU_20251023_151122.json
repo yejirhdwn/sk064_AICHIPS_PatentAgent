@@ -1,0 +1,35 @@
+{
+  "tech_name": "NPU",
+  "patent_id": "KR101997325B1",
+  "patent_title": "Processor with memory array operable as either last level cache slice or neural …",
+  "market_size_score": 0.25,
+  "growth_potential_score": 0.25,
+  "commercialization_readiness": 0.2,
+  "market_score": 0.7,
+  "application_domains": [
+    "Neural Processing Units (NPUs)",
+    "AI Computing",
+    "Edge Computing",
+    "Consumer Electronics",
+    "Automotive"
+  ],
+  "commercialization_potential": "Medium",
+  "market_rationale": "이 특허(KR101997325B1)는 메모리 배열을 마지막 레벨 캐시 슬라이스 또는 신경망 처리 장치로 작동할 수 있는 프로세서에 관한 것입니다. 이 기술은 신경망 처리 장치(NPU) 시장에서 중요한 역할을 할 수 있으며, 해당 시장은 2024년 29억 달러에서 2031년까지 24억 달러에 이를 것으로 예상됩니다. 이 시장은 2025년부터 2031년까지 CAGR 17.5%로 성장할 것으로 보입니다. 현재 이 기술은 1~2년 내에 상용화될 가능성이 있으며, 프로토타입 검증이 완료된 상태입니다.",
+  "demand_signals": [
+    "AI 워크로드 증가",
+    "온디바이스 AI 수요 증가",
+    "5G 네트워크 확산",
+    "전력 효율성 요구 증가",
+    "AI 반도체 경쟁 심화"
+  ],
+  "sources": [
+    "[RAG] C:\\workspace\\skala_gai\\Patent-analysis-report\\data\\품목별ICT시장동향_AI반도체.pdf",
+    "[Web] Neural Processor Market Size, Share & Growth Repor (https://www.gminsights.com/industry-analysis/neural-processor-market)",
+    "[Web] Neural Processing Units (NPUs) Market Size, Share  (https://www.industryarc.com/PressRelease/4540/Neural-Processing-Units-(NPUs)-Market)",
+    "[Web] NPU Chip Market Forecast 2025-2031: Rapid 23% CAGR (https://www.openpr.com/news/4190357/npu-chip-market-forecast-2025-2031-rapid-23-cagr-to-drive)",
+    "[Web] Neural Processors Market Growth & Forecast 2025 to (https://www.futuremarketinsights.com/reports/neural-processors-market)",
+    "[Web] Neural processing unit Market: trends & opportunit (https://www.wiseguyreports.com/reports/neural-processing-unit-market)",
+    "[Web] Network Processing Unit Market Size & Share Report (https://www.grandviewresearch.com/industry-analysis/network-processing-unit-market-report)"
+  ],
+  "error": null
+}
