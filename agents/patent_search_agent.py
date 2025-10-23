@@ -27,13 +27,17 @@ except Exception:
         serpapi_url: str
         count: int
         items: List[Dict[str, Any]]
-        first_item: Dict[str, Any]
+        first_item: Dict[str, Any]  # Legacy - first patent only
+        top_items: List[Dict[str, Any]]  # ✅ Top 3 patents with full abstract
         error: str
 
 
 load_dotenv()
 SERPAPI_KEY = os.getenv("SERPAPI_KEY")
 BASE_URL = "https://serpapi.com/search.json"
+
+# ✅ Configuration
+TOP_N_PATENTS = 3  # Number of patents to enrich with full abstract
 
 
 def _clamp_num(n: int) -> int:
@@ -94,7 +98,7 @@ def _build_query(tech_name: str) -> str:
 
 
 def patent_search_node(state: PatentState) -> PatentState:
-    """LangGraph node: search Google Patents and enrich the first item."""
+    """LangGraph node: search Google Patents and enrich TOP 3 items with full abstract."""
     if not SERPAPI_KEY:
         out = dict(state)
         out["error"] = "SERPAPI_KEY not set"
@@ -133,12 +137,25 @@ def patent_search_node(state: PatentState) -> PatentState:
     items_raw = data.get("organic_results", []) or []
     rows: List[Dict[str, Any]] = [_normalize_item(it) for it in items_raw]
 
-    first_item: Dict[str, Any] = {}
-    if rows:
-        first_item = dict(rows[0])
-        abstract_full = _fetch_details_abstract_full(first_item.get("patent_id"))
+    # ✅ Enrich top N patents with full abstract
+    top_items: List[Dict[str, Any]] = []
+    for i, item in enumerate(rows[:TOP_N_PATENTS]):
+        enriched_item = dict(item)
+        patent_id = enriched_item.get("patent_id")
+        
+        print(f"   🔍 [{i+1}/{min(TOP_N_PATENTS, len(rows))}] Fetching full abstract for: {patent_id}")
+        
+        abstract_full = _fetch_details_abstract_full(patent_id)
         if abstract_full:
-            first_item["abstract_full"] = abstract_full
+            enriched_item["abstract_full"] = abstract_full
+            print(f"       ✅ Full abstract retrieved ({len(abstract_full)} chars)")
+        else:
+            print(f"       ⚠️ Could not retrieve full abstract")
+        
+        top_items.append(enriched_item)
+
+    # Legacy: keep first_item for backward compatibility
+    first_item: Dict[str, Any] = top_items[0] if top_items else {}
 
     out: PatentState = dict(state)
     out.update(
@@ -147,7 +164,8 @@ def patent_search_node(state: PatentState) -> PatentState:
             "serpapi_url": safe_url,
             "count": len(rows),
             "items": rows,
-            "first_item": first_item,
+            "first_item": first_item,  # Legacy
+            "top_items": top_items,  # ✅ New: Top 3 patents with full abstract
         }
     )
 
@@ -164,13 +182,17 @@ def patent_search_node(state: PatentState) -> PatentState:
                     "serpapi_url": out.get("serpapi_url"),
                     "count": out.get("count"),
                     "items": out.get("items", []),
-                    "first_item": out.get("first_item", {}),
+                    "first_item": out.get("first_item", {}),  # Legacy
+                    "top_items": out.get("top_items", []),  # ✅ New
                 },
                 f,
                 ensure_ascii=False,
                 indent=2,
             )
         out["search_output_path"] = out_path  # type: ignore
+        print(f"\n💾 Search results saved: {out_path}")
+        print(f"   • Total results: {len(rows)}")
+        print(f"   • Top patents enriched: {len(top_items)}")
     except Exception as e:
         out["error"] = f"Failed to write search JSON: {e}"  # type: ignore
 
@@ -178,4 +200,3 @@ def patent_search_node(state: PatentState) -> PatentState:
 
 
 __all__ = ["patent_search_node", "PatentState"]
-

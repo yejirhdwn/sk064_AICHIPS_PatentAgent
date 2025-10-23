@@ -1,6 +1,6 @@
-"""
-Patent Analysis Pipeline - Full Integration (FIXED)
-특허 검색 → 독창성 분석 → 시장성 평가 → 지속가능성 평가
+﻿"""
+Patent Analysis Pipeline - Full Integration WITH REPORT GENERATION
+특허 검색 → 독창성 분석 → 시장성 평가 → 지속가능성 평가 → 보고서 생성
 """
 
 from __future__ import annotations
@@ -22,7 +22,8 @@ from state.workflow_state import WorkflowState
 from agents.patent_search_agent import patent_search_node
 from agents.patent_originality_agent import patent_originality_node
 from agents.market_size_growth_agent import MarketSizeGrowthAgent
-from agents.suitability_agent import SustainabilityScoreAgent
+from agents.suitability_agent import SuitabilityScoreAgent
+from agents.report_agent import pdf_report_agent_node  # ⭐ PDF Report Agent
 
 
 # ===== Market Evaluation Node =====
@@ -39,7 +40,6 @@ def market_evaluation_node(state: WorkflowState) -> WorkflowState:
     tech_name = state.get("tech_name", "Unknown")
     first_item = state.get("first_item", {})
     
-    # Patent 정보 확인
     patent_id = first_item.get("patent_id")
     patent_abstract = first_item.get("abstract") or first_item.get("abstract_full")
     
@@ -48,16 +48,14 @@ def market_evaluation_node(state: WorkflowState) -> WorkflowState:
         return state
     
     try:
-        # Market Agent 실행 (✅ 파라미터 수정)
         agent = MarketSizeGrowthAgent(
             tech_name=tech_name,
-            patent_info=first_item,  # ✅ patent_json_or_dict → patent_info
-            output_dir="./output/market_evaluation"  # ✅ 기본값이지만 명시
+            patent_info=first_item,
+            output_dir="./output/market_evaluation"
         )
         
         market_result = agent.evaluate_market()
         
-        # State 업데이트
         state.update({
             "market_size_score": market_result["market_size_score"],
             "growth_potential_score": market_result["growth_potential_score"],
@@ -72,9 +70,6 @@ def market_evaluation_node(state: WorkflowState) -> WorkflowState:
         })
         
         print(f"✅ Market Score: {market_result['market_score']:.4f}")
-        print(f"   - Market Size: {market_result['market_size_score']:.2f}")
-        print(f"   - Growth Potential: {market_result['growth_potential_score']:.2f}")
-        print(f"   - Commercialization: {market_result['commercialization_readiness']:.2f}")
         
     except Exception as e:
         print(f"❌ Market evaluation failed: {e}")
@@ -83,18 +78,17 @@ def market_evaluation_node(state: WorkflowState) -> WorkflowState:
     return state
 
 
-# ===== Sustainability Scoring Node =====
-def sustainability_scoring_node(state: WorkflowState) -> WorkflowState:
+# ===== Suitability Scoring Node =====
+def suitability_scoring_node(state: WorkflowState) -> WorkflowState:
     """지속가능성 평가 노드"""
     print("\n" + "="*80)
-    print("🌱 Step 4: Sustainability Scoring")
+    print("🌱 Step 4: Suitability Scoring")
     print("="*80)
     
     if state.get("error"):
         print(f"⚠️ Skipping due to previous error: {state['error']}")
         return state
     
-    # 필수 점수 확인
     originality_score = state.get("originality_score")
     market_score = state.get("market_score")
     
@@ -105,13 +99,12 @@ def sustainability_scoring_node(state: WorkflowState) -> WorkflowState:
     tech_name = state.get("tech_name", "Unknown")
     
     try:
-        # Sustainability Agent 실행
-        agent = SustainabilityScoreAgent(
+        agent = SuitabilityScoreAgent(
             tech_name=tech_name,
-            use_llm_judge=True  # LLM Judge 활성화
+            use_llm_judge=True
         )
         
-        result = agent.calculate_sustainability(
+        result = agent.calculate_suitability(
             originality_score=originality_score,
             market_score=market_score,
             market_size_score=state.get("market_size_score"),
@@ -119,75 +112,75 @@ def sustainability_scoring_node(state: WorkflowState) -> WorkflowState:
             commercialization_readiness=state.get("commercialization_readiness")
         )
         
-        # State 업데이트
         state.update({
             "calculated_score": result["calculated_score"],
             "calculated_grade": result["calculated_grade"],
-            "sustainability_score": result["sustainability_score"],
-            "sustainability_grade": result["sustainability_grade"],
+            "suitability_score": result["suitability_score"],
+            "suitability_grade": result["suitability_grade"],
             "final_grade": result["final_grade"],
             "score_breakdown": result["score_breakdown"],
             "llm_evaluation": result.get("llm_evaluation"),
             "evaluation_summary": result["evaluation_summary"],
-            "sustainability_output_path": result["sustainability_output_path"]
+            "suitability_output_path": result["suitability_output_path"]
         })
         
         print(f"✅ Final Grade: {result['final_grade']}")
-        print(f"   - Calculated: {result['calculated_grade']} ({result['calculated_score']:.4f})")
-        
-        if result.get("llm_evaluation"):
-            llm_eval = result["llm_evaluation"]
-            print(f"   - LLM Assessment: {result['final_grade']}")
-            print(f"   - Investment: {llm_eval.get('investment_recommendation', 'N/A')}")
-            print(f"   - Risk: {llm_eval.get('risk_level', 'N/A')}")
         
     except Exception as e:
-        print(f"❌ Sustainability scoring failed: {e}")
-        state["error"] = f"Sustainability scoring error: {e}"
+        print(f"❌ Suitability scoring failed: {e}")
+        state["error"] = f"Suitability scoring error: {e}"
     
     return state
 
 
-# ===== Graph Builder =====
-def build_graph():
-    """전체 워크플로우 그래프 구성"""
-    if _HAS_LANGGRAPH:
-        workflow = StateGraph(WorkflowState)
-        
-        # 노드 추가
-        workflow.add_node("PatentSearch", patent_search_node)
-        workflow.add_node("PatentOriginality", patent_originality_node)
-        workflow.add_node("MarketEvaluation", market_evaluation_node)
-        workflow.add_node("SustainabilityScoring", sustainability_scoring_node)
-        
-        # 엣지 연결
-        workflow.set_entry_point("PatentSearch")
-        workflow.add_edge("PatentSearch", "PatentOriginality")
-        workflow.add_edge("PatentOriginality", "MarketEvaluation")
-        workflow.add_edge("MarketEvaluation", "SustainabilityScoring")
-        workflow.add_edge("SustainabilityScoring", END)
-        
-        return workflow.compile()
-    else:
-        # LangGraph 없을 때 fallback
-        class _App:
-            def invoke(self, init_state: Dict[str, Any]) -> Dict[str, Any]:
-                s1 = patent_search_node(init_state)
-                s2 = patent_originality_node(s1)
-                s3 = market_evaluation_node(s2)
-                s4 = sustainability_scoring_node(s3)
-                return s4
-        return _App()
+# ===== Single Patent Pipeline =====
+def process_single_patent(patent_item: Dict[str, Any], tech_name: str, patent_index: int) -> Dict[str, Any]:
+    """단일 특허에 대한 전체 분석 파이프라인"""
+    
+    patent_id = patent_item.get("patent_id", "unknown")
+    patent_title = patent_item.get("title", "Unknown")
+    
+    print("\n" + "="*80)
+    print(f"🎯 Processing Patent #{patent_index}: {patent_id}")
+    print(f"   Title: {patent_title}")
+    print("="*80)
+    
+    state: WorkflowState = {
+        "tech_name": tech_name,
+        "first_item": patent_item,
+        "items": [patent_item],
+        "target_patent_id": patent_id,
+        "count": 1,
+    }
+    
+    # Step 1: Originality
+    state = patent_originality_node(state)
+    if state.get("error"):
+        return state
+    
+    # Step 2: Market
+    state = market_evaluation_node(state)
+    if state.get("error"):
+        return state
+    
+    # Step 3: Suitability
+    state = suitability_scoring_node(state)
+    if state.get("error"):
+        return state
+    
+    # Save summary
+    save_comprehensive_summary(state, tech_name, patent_index)
+    
+    return state
 
 
 # ===== Summary Writer =====
-def save_comprehensive_summary(result: WorkflowState, tech_name: str):
+def save_comprehensive_summary(result: WorkflowState, tech_name: str, patent_index: int = 1):
     """종합 결과 저장"""
     try:
         base_dir = Path(__file__).parent / "output" / "summary"
         base_dir.mkdir(parents=True, exist_ok=True)
         
-        # 파일명 생성
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         patent_id = result.get("target_patent_id", "unknown")
         safe_patent_id = ''.join(
@@ -195,24 +188,20 @@ def save_comprehensive_summary(result: WorkflowState, tech_name: str):
             for ch in str(patent_id)
         )
         
-        filename = f"{tech_name}_{safe_patent_id}_{timestamp}_FULL.json"
+        filename = f"{tech_name}_Patent{patent_index}_{safe_patent_id}_{timestamp}.json"
         out_path = base_dir / filename
         
-        # 종합 요약 구성
         summary = {
             "tech_name": tech_name,
-            "patent_id": patent_id,
-            "patent_title": result.get("first_item", {}).get("title"),
+            "patent_index": patent_index,
             "generated_at": datetime.now().isoformat(),
             
-            # 1. Patent Search
-            "search": {
-                "query": result.get("query"),
-                "count": result.get("count"),
-                "output_path": result.get("search_output_path")
+            "patent_info": {
+                "patent_id": result.get("target_patent_id"),
+                "title": result.get("first_item", {}).get("title"),
+                "abstract": result.get("first_item", {}).get("abstract")
             },
             
-            # 2. Originality
             "originality": {
                 "score": result.get("originality_score"),
                 "cpc_distribution": result.get("cpc_distribution"),
@@ -220,7 +209,6 @@ def save_comprehensive_summary(result: WorkflowState, tech_name: str):
                 "output_path": result.get("originality_output_path")
             },
             
-            # 3. Market Evaluation
             "market": {
                 "total_score": result.get("market_score"),
                 "market_size_score": result.get("market_size_score"),
@@ -234,23 +222,20 @@ def save_comprehensive_summary(result: WorkflowState, tech_name: str):
                 "output_path": result.get("market_output_path")
             },
             
-            # 4. Sustainability
-            "sustainability": {
+            "suitability": {
                 "calculated_score": result.get("calculated_score"),
                 "calculated_grade": result.get("calculated_grade"),
-                "final_score": result.get("sustainability_score"),
+                "final_score": result.get("suitability_score"),
                 "final_grade": result.get("final_grade"),
                 "score_breakdown": result.get("score_breakdown"),
                 "llm_evaluation": result.get("llm_evaluation"),
                 "evaluation_summary": result.get("evaluation_summary"),
-                "output_path": result.get("sustainability_output_path")
+                "output_path": result.get("suitability_output_path")
             },
             
-            # Error (if any)
             "error": result.get("error")
         }
         
-        # JSON 저장
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(summary, f, ensure_ascii=False, indent=2)
         
@@ -263,128 +248,169 @@ def save_comprehensive_summary(result: WorkflowState, tech_name: str):
 
 
 # ===== Display Results =====
-def display_final_results(result: WorkflowState):
+def display_final_results(results: list[WorkflowState]):
     """최종 결과 출력"""
     print("\n" + "="*80)
-    print("🎯 FINAL RESULTS - COMPREHENSIVE ANALYSIS")
+    print("🎯 FINAL RESULTS - COMPREHENSIVE ANALYSIS (TOP 3 PATENTS)")
     print("="*80)
     
-    tech_name = result.get("tech_name", "N/A")
-    patent_id = result.get("target_patent_id", "N/A")
-    
-    print(f"\n📌 Basic Information:")
-    print(f"   Technology: {tech_name}")
-    print(f"   Patent ID: {patent_id}")
-    
-    # Originality
-    orig_score = result.get("originality_score")
-    if orig_score is not None:
-        if orig_score >= 0.8:
-            interpretation = "🔥 Highly Original"
-        elif orig_score >= 0.6:
-            interpretation = "✅ Original"
-        else:
-            interpretation = "➖ Moderate"
-        print(f"\n🔬 Originality Analysis:")
-        print(f"   Score: {orig_score:.4f} ({interpretation})")
+    for i, result in enumerate(results, 1):
+        tech_name = result.get("tech_name", "N/A")
+        patent_id = result.get("target_patent_id", "N/A")
+        patent_title = result.get("first_item", {}).get("title", "N/A")
         
-        if result.get("statistics"):
-            stats = result["statistics"]
-            print(f"   • Total CPC: {stats.get('total_cpc_count', 0)}")
-            print(f"   • Unique CPC: {stats.get('unique_cpc_count', 0)}")
-    
-    # Market
-    market_score = result.get("market_score")
-    if market_score is not None:
-        print(f"\n📊 Market Evaluation:")
-        print(f"   Total Score: {market_score:.4f}")
-        print(f"   • Market Size: {result.get('market_size_score', 0):.2f}/0.4")
-        print(f"   • Growth Potential: {result.get('growth_potential_score', 0):.2f}/0.3")
-        print(f"   • Commercialization: {result.get('commercialization_readiness', 0):.2f}/0.3")
+        print(f"\n{'='*80}")
+        print(f"📌 Patent #{i}: {patent_id}")
+        print(f"{'='*80}")
+        print(f"   Technology: {tech_name}")
+        print(f"   Title: {patent_title[:100]}...")
         
-        domains = result.get("application_domains", [])
-        if domains:
-            print(f"   • Domains: {', '.join(domains[:3])}")
-    
-    # Sustainability
-    final_grade = result.get("final_grade")
-    if final_grade:
-        print(f"\n🌱 Sustainability Assessment:")
-        print(f"   Final Grade: {final_grade}")
-        print(f"   • Calculated: {result.get('calculated_grade', 'N/A')} ({result.get('calculated_score', 0):.4f})")
+        # Scores
+        orig_score = result.get("originality_score")
+        market_score = result.get("market_score")
+        final_grade = result.get("final_grade")
         
-        llm_eval = result.get("llm_evaluation")
-        if llm_eval:
-            print(f"   • LLM Assessment: {final_grade}")
-            print(f"   • Investment: {llm_eval.get('investment_recommendation', 'N/A')}")
-            print(f"   • Risk Level: {llm_eval.get('risk_level', 'N/A')}")
-            print(f"   • Confidence: {llm_eval.get('confidence_score', 0):.2f}")
-            
-            print(f"\n   💡 Key Strengths:")
-            for strength in llm_eval.get("key_strengths", [])[:3]:
-                print(f"      • {strength}")
-            
-            if llm_eval.get("key_weaknesses"):
-                print(f"\n   ⚠️ Key Weaknesses:")
-                for weakness in llm_eval.get("key_weaknesses", [])[:2]:
-                    print(f"      • {weakness}")
+        if orig_score:
+            print(f"\n🔬 Originality: {orig_score:.4f}")
+        if market_score:
+            print(f"📊 Market Score: {market_score:.4f}")
+        if final_grade:
+            print(f"🌱 Final Grade: {final_grade}")
+        
+        if result.get("error"):
+            print(f"\n❌ Error: {result['error']}")
     
-    # Output Files
-    print(f"\n📁 Output Files:")
-    if result.get("search_output_path"):
-        print(f"   • Search: {result['search_output_path']}")
-    if result.get("originality_output_path"):
-        print(f"   • Originality: {result['originality_output_path']}")
-    if result.get("market_output_path"):
-        print(f"   • Market: {result['market_output_path']}")
-    if result.get("sustainability_output_path"):
-        print(f"   • Sustainability: {result['sustainability_output_path']}")
-    
-    # Error
-    if result.get("error"):
-        print(f"\n   ❌ Error: {result['error']}")
-    
-    print("="*80 + "\n")
+    print("\n" + "="*80 + "\n")
+
+
+def save_combined_summary(results: list[WorkflowState], tech_name: str):
+    """모든 특허의 결과를 하나의 파일로 저장"""
+    try:
+        base_dir = Path(__file__).parent / "output" / "summary"
+        base_dir.mkdir(parents=True, exist_ok=True)
+        
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"{tech_name}_TOP3_COMBINED_{timestamp}.json"
+        out_path = base_dir / filename
+        
+        combined = {
+            "tech_name": tech_name,
+            "generated_at": datetime.now().isoformat(),
+            "total_patents_analyzed": len(results),
+            "patents": []
+        }
+        
+        for i, result in enumerate(results, 1):
+            patent_summary = {
+                "patent_index": i,
+                "patent_id": result.get("target_patent_id"),
+                "patent_title": result.get("first_item", {}).get("title"),
+                "originality_score": result.get("originality_score"),
+                "market_score": result.get("market_score"),
+                "final_grade": result.get("final_grade"),
+                "calculated_score": result.get("calculated_score"),
+                "llm_evaluation": result.get("llm_evaluation"),
+                "error": result.get("error")
+            }
+            combined["patents"].append(patent_summary)
+        
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(combined, f, ensure_ascii=False, indent=2)
+        
+        print(f"\n💾 Combined summary saved: {out_path}")
+        
+    except Exception as e:
+        print(f"⚠️ Failed to save combined summary: {e}")
 
 
 # ===== Main =====
 def main():
     load_dotenv()
     
-    # 기술명 설정
     tech_name = os.environ.get("TECH_NAME", "NPU")
     
     print("\n" + "="*80)
-    print("🚀 Patent Analysis Pipeline - Full Integration (FIXED)")
+    print("🚀 Patent Analysis Pipeline - WITH REPORT GENERATION")
     print("="*80)
     print(f"   Technology: {tech_name}")
-    print(f"   Using LangGraph: {_HAS_LANGGRAPH}")
+    print(f"   Processing: Top 3 patents")
     print(f"\n   Pipeline:")
-    print(f"   1. Patent Search (US patents only)")
+    print(f"   1. Patent Search (US patents)")
     print(f"   2. Originality Analysis")
     print(f"   3. Market Evaluation")
-    print(f"   4. Sustainability Scoring")
+    print(f"   4. Suitability Scoring")
+    print(f"   5. PDF Report Generation ⭐ NEW")
     print("="*80)
     
-    # 워크플로우 실행
-    app = build_graph()
+    # Step 1: Patent Search
+    print("\n" + "="*80)
+    print("📋 Step 1: Patent Search")
+    print("="*80)
     
-    # ✅ FIX: country="US" 추가
     init_state: WorkflowState = {
         "tech_name": tech_name,
         "num": 10,
         "page": 1,
         "ptype": "PATENT",
-        "country": "US"  # ✅ 미국 특허만 검색
+        "country": "US"
     }
     
-    result: WorkflowState = app.invoke(init_state)
+    search_result: WorkflowState = patent_search_node(init_state)
     
-    # 종합 요약 저장
-    save_comprehensive_summary(result, tech_name)
+    if search_result.get("error"):
+        print(f"❌ Patent search failed: {search_result['error']}")
+        return
     
-    # 최종 결과 출력
-    display_final_results(result)
+    top_items = search_result.get("top_items", [])
+    if not top_items:
+        print("❌ No patents found")
+        return
+    
+    print(f"\n✅ Found {len(top_items)} patents to process")
+    
+    # Step 2-4: Process each patent
+    results = []
+    for i, patent_item in enumerate(top_items, 1):
+        result = process_single_patent(patent_item, tech_name, patent_index=i)
+        results.append(result)
+    
+    # Display results
+    display_final_results(results)
+    
+    # Save combined summary
+    save_combined_summary(results, tech_name)
+    
+    # ⭐ Step 5: Generate PDF Report (NEW)
+    print("\n" + "="*80)
+    print("📊 Step 5: PDF Report Generation")
+    print("="*80)
+    
+    final_state: WorkflowState = {
+        "tech_name": tech_name,
+        "all_patent_results": results,
+        "output_dir": "./output/reports",
+        "use_llm": True
+    }
+    
+    final_state = pdf_report_agent_node(final_state)
+    
+    if final_state.get("report_pdf_path"):
+        print("\n" + "="*80)
+        print("🎉 PDF REPORT GENERATION COMPLETE!")
+        print("="*80)
+        print(f"📄 PDF Report: {final_state['report_pdf_path']}")
+        print(f"📊 JSON Report: {final_state.get('report_json_path', 'N/A')}")
+        print(f"📋 Report Title: {final_state['report_title']}")
+        print(f"🕒 Generated At: {final_state['report_generated_at']}")
+        print(f"\n📈 Statistics:")
+        print(f"   Total Patents: {final_state['total_patents_analyzed']}")
+        print(f"   Avg Originality: {final_state['avg_originality_score']:.4f}")
+        print(f"   Avg Market: {final_state['avg_market_score']:.4f}")
+        print(f"   Grade Distribution: {final_state['grade_distribution']}")
+        print("="*80)
+        print("\n✅ All analysis complete! Check the PDF report.")
+    else:
+        print("\n⚠️ PDF report generation failed. Check logs for details.")
 
 
 if __name__ == "__main__":

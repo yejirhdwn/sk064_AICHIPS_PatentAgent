@@ -4,3 +4,6 @@ python-dotenv
 requests
 serpapi
 google-search-results
+markdown
+xhtml2pdf
+reportlab

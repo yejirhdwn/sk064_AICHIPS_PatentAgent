@@ -1,5 +1,5 @@
-"""
-Sustainability Score Agent with LLM-as-a-Judge
+﻿"""
+Suitability Score Agent with LLM-as-a-Judge
 - 독창성 + 시장성 점수를 LLM이 분석하여 최종 평가
 - GPT-4가 점수의 의미를 해석하고 종합적인 판단 수행
 """
@@ -50,7 +50,7 @@ JUDGE_SYSTEM_PROMPT = """당신은 특허 기술의 지속가능성을 평가하
 **응답 형식:**
 반드시 JSON 형식으로만 응답하세요:
 {
-  "sustainability_grade": "S/A/B/C/D 중 하나",
+  "suitability_grade": "S/A/B/C/D 중 하나",
   "confidence_score": 0.0-1.0,
   "key_strengths": ["강점1", "강점2", "강점3"],
   "key_weaknesses": ["약점1", "약점2"],
@@ -116,7 +116,7 @@ def _create_judge_prompt(
 
 
 # ===== Main Agent =====
-class SustainabilityScoreAgent:
+class SuitabilityScoreAgent:
     """
     LLM-as-a-Judge 기반 지속가능성 평가 Agent
     
@@ -127,7 +127,7 @@ class SustainabilityScoreAgent:
     def __init__(
         self, 
         tech_name: str,
-        output_dir: str = "./output/sustainability",
+        output_dir: str = "./output/suitability",
         use_llm_judge: bool = True
     ):
         self.tech_name = tech_name
@@ -139,7 +139,7 @@ class SustainabilityScoreAgent:
             self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
             self.model = "gpt-4o-mini"  # or "gpt-4o"
     
-    def calculate_sustainability(
+    def calculate_suitability(
         self,
         originality_score: float,
         market_score: float,
@@ -152,7 +152,7 @@ class SustainabilityScoreAgent:
         지속가능성 점수 계산 + LLM 평가
         """
         print("=" * 80)
-        print(f"🌱 Sustainability Score Calculation: {self.tech_name}")
+        print(f"🌱 Suitability Score Calculation: {self.tech_name}")
         print("=" * 80)
         
         # 입력 검증
@@ -210,7 +210,7 @@ class SustainabilityScoreAgent:
             )
             
             if llm_evaluation:
-                final_grade = llm_evaluation.get("sustainability_grade", calculated_grade)
+                final_grade = llm_evaluation.get("suitability_grade", calculated_grade)
                 print(f"   ✅ LLM Grade: {final_grade}")
                 print(f"   ✅ Confidence: {llm_evaluation.get('confidence_score', 0):.2f}")
                 print(f"   ✅ Recommendation: {llm_evaluation.get('investment_recommendation', 'N/A')}")
@@ -233,8 +233,8 @@ class SustainabilityScoreAgent:
             "calculated_score": calculated_score,
             "calculated_grade": calculated_grade,
             "final_grade": final_grade,
-            "sustainability_score": final_score,
-            "sustainability_grade": final_grade,
+            "suitability_score": final_score,
+            "suitability_grade": final_grade,
             "score_breakdown": breakdown,
             "llm_evaluation": llm_evaluation,
             "evaluation_summary": summary
@@ -250,7 +250,7 @@ class SustainabilityScoreAgent:
         
         # 결과 저장
         output_path = self._save_result(result)
-        result["sustainability_output_path"] = str(output_path)
+        result["suitability_output_path"] = str(output_path)
         
         # 결과 출력
         print("\n" + "=" * 80)
@@ -323,11 +323,11 @@ class SustainabilityScoreAgent:
     
     def _calculate_score(self, originality_normalized: float, market: float) -> float:
         """지속가능성 점수 계산"""
-        sustainability = (
+        suitability = (
             originality_normalized * ScoringConfig.ORIGINALITY_WEIGHT +
             market * ScoringConfig.MARKET_WEIGHT
         )
-        return round(sustainability, 4)
+        return round(suitability, 4)
     
     def _determine_grade(self, score: float) -> str:
         """점수에 따른 등급 결정"""
@@ -372,7 +372,7 @@ class SustainabilityScoreAgent:
     def _save_result(self, result: Dict[str, Any]) -> Path:
         """결과 저장"""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"sustainability_{self.tech_name}_{timestamp}.json"
+        filename = f"suitability_{self.tech_name}_{timestamp}.json"
         output_path = self.output_dir / filename
         
         with open(output_path, "w", encoding="utf-8") as f:
@@ -385,24 +385,24 @@ class SustainabilityScoreAgent:
 if __name__ == "__main__":
     import argparse
     
-    parser = argparse.ArgumentParser(description="Sustainability Agent with LLM Judge")
+    parser = argparse.ArgumentParser(description="Suitability Agent with LLM Judge")
     parser.add_argument("tech_name", type=str, help="기술 키워드")
     parser.add_argument("--originality", type=float, required=True, help="독창성 점수")
     parser.add_argument("--market", type=float, required=True, help="시장성 점수")
     parser.add_argument("--no-llm", action="store_true", help="LLM Judge 비활성화")
     args = parser.parse_args()
     
-    agent = SustainabilityScoreAgent(
+    agent = SuitabilityScoreAgent(
         tech_name=args.tech_name,
         use_llm_judge=not args.no_llm
     )
     
-    result = agent.calculate_sustainability(
+    result = agent.calculate_suitability(
         originality_score=args.originality,
         market_score=args.market
     )
     
-    print(f"\n✅ Grade: {result['sustainability_grade']}")
+    print(f"\n✅ Grade: {result['suitability_grade']}")
 
 
-__all__ = ["SustainabilityScoreAgent"]
+__all__ = ["SuitabilityScoreAgent"]

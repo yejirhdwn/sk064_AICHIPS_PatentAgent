@@ -1,0 +1,7 @@
+{
+  "pdf_path": "C:\\workspace\\skala_gai\\Patent-analysis-report\\data\\AI반도체시장현황및전망.pdf",
+  "total_pages": 25,
+  "total_chunks": 40,
+  "chunk_size": 1000,
+  "chunk_overlap": 200
+}

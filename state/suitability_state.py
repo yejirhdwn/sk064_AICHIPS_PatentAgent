@@ -1,14 +1,14 @@
 """
-Sustainability State Definition
-지속가능성 평가를 위한 State 타입 정의
+Suitability State Definition
+적합성 평가를 위한 State 타입 정의
 """
 
 from typing import TypedDict, Dict, Any, Optional
 
 
-class SustainabilityState(TypedDict, total=False):
+class SuitabilityState(TypedDict, total=False):
     """
-    지속가능성 평가 State
+    적합성 평가 State
     
     Inputs (from other agents):
         originality_score: 독창성 점수 (0~1)
@@ -18,15 +18,15 @@ class SustainabilityState(TypedDict, total=False):
         commercialization_readiness: 상업화 준비도 세부 점수
     
     Outputs:
-        sustainability_score: 최종 지속가능성 점수 (0~1)
-        sustainability_grade: 등급 (S/A/B/C/D)
+        suitability_score: 최종 적합성 점수 (0~1)
+        suitability_grade: 등급 (S/A/B/C/D)
         calculated_score: 수식 기반 계산 점수
         calculated_grade: 수식 기반 계산 등급
         final_grade: LLM Judge 최종 등급
         score_breakdown: 점수 분해 정보
         llm_evaluation: LLM Judge 평가 결과
         evaluation_summary: 종합 평가 요약
-        sustainability_output_path: 결과 저장 경로
+        suitability_output_path: 결과 저장 경로
     """
     
     # ========== Common Fields ==========
@@ -47,8 +47,8 @@ class SustainabilityState(TypedDict, total=False):
     calculated_grade: str                 # 수식 기반 등급 (S/A/B/C/D)
     
     # ========== Final Results ==========
-    sustainability_score: float           # 최종 지속가능성 점수 (0~1)
-    sustainability_grade: str             # 최종 등급 (S/A/B/C/D)
+    suitability_score: float              # 최종 적합성 점수 (0~1)
+    suitability_grade: str                # 최종 등급 (S/A/B/C/D)
     final_grade: str                      # LLM Judge 최종 등급
     
     # ========== Detailed Information ==========
@@ -64,7 +64,7 @@ class SustainabilityState(TypedDict, total=False):
     
     llm_evaluation: Optional[Dict[str, Any]]  # LLM Judge 평가 결과
     # {
-    #   "sustainability_grade": "A",
+    #   "suitability_grade": "A",
     #   "confidence_score": 0.92,
     #   "key_strengths": ["...", "..."],
     #   "key_weaknesses": ["...", "..."],
@@ -75,7 +75,7 @@ class SustainabilityState(TypedDict, total=False):
     # }
     
     evaluation_summary: str               # 종합 평가 요약
-    sustainability_output_path: str       # 결과 저장 경로
+    suitability_output_path: str          # 결과 저장 경로
 
 
-__all__ = ["SustainabilityState"]
+__all__ = ["SuitabilityState"]
