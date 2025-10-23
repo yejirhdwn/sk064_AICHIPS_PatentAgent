@@ -157,15 +157,15 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
 
 ---
 
-### 2. 성장**성 지표 (MarketSizeGrowthAgent)**
+### 2. **성장성 지표 (MarketSizeGrowthAgent)**
 
 - 본 에이전트는 **특허의 시장성 및 상업화 가능성을 정량화**하기 위해 아래와 같은 **시장성 점수(Market Score)** 공식을 사용합니다.
 - **(수식)**
     
     $$
-    MarketScore_i = MarketSize_i + GrowthPotential_i + Commercialization_i 
+    MarketScore_i = MarketSize_i + GrowthPotential_i + Commercialization_i
     $$
-    
+
 - **(세부 구성 요소)**
     
     
@@ -206,6 +206,7 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
             | 0.15~0.2 | 2~3년 | 파일럿 단계 |
             | 0.1~0.15 | 3~5년 | 초기 R&D, 표준화 필요 |
             | 0~0.1 | 5년+ | 상업화 경로 불명확 |
+
 - **하이브리드 검색 로직 (RAG + Web Search)**
     - RAG 검색
         - **방식**:
@@ -243,7 +244,6 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
         - **시장성 45%**: 시장 잠재력의 중요성 반영
         - **등급 체계**
             
-            
             | 등급 | 점수 범위 | 설명 |
             | --- | --- | --- |
             | **S** | 0.85 ~ 1.0 | Excellent (탁월) |
@@ -251,6 +251,7 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
             | **B** | 0.55 ~ 0.70 | Good (우수) |
             | **C** | 0.40 ~ 0.55 | Fair (보통) |
             | **D** | 0.0 ~ 0.40 | Poor (낮음) |
+            
 - **(2차 평가)**
     - GPT-4 Judge의 역할
         1. **점수 해석**: 단순 수치가 아닌 의미 분석
