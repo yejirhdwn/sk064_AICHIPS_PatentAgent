@@ -379,7 +379,7 @@ Patent-analysis-report/
 - **권예지 (Yeji Kwon)**  
     | 항목 | 내용 |
     | --- | --- |
-    | 🎓 **소속 (Affiliation)** | SKALA AI Bootcamp 2기 3반 / 팀 코드 **SK064** |
+    | 🎓 **소속 (Affiliation)** | SKALA 2기 3반 / **SK064** |
     | 💻 **Role** | Project Lead — Multi-Agent System & Patent Analysis Pipeline |
     | ✉️ **Email** | [yejrhdwn@naver.com](mailto:yejrhdwn@naver.com) |
     | 🌐 **GitHub** | [github.com/yejirhdwn](https://github.com/yejirhdwn) |
