@@ -159,8 +159,7 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
 ### 2. **성장성 지표 (MarketSizeGrowthAgent)**
 
 - 본 에이전트는 **특허의 시장성 및 상업화 가능성을 정량화**하기 위해 아래와 같은 **시장성 점수(Market Score)** 공식을 사용합니다.
-
-- **(수식)**
+- **(수식)**  
 
   $$
   MarketScore_i = MarketSize_i + GrowthPotential_i + Commercialization_i
@@ -216,6 +215,7 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
     1️⃣ `"{tech} {keyterm} market size 2024 2025 billion USD"`  
     2️⃣ `"{tech} {keyterm} CAGR growth rate forecast 2024-2028"`  
     3️⃣ `"{tech} application market forecast"`  
+    
   - **LLM 점수 산정:**  
     - Abstract (특허 기술 내용)  
     - RAG 문서 (시장 보고서 참고)  
@@ -224,12 +224,11 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
 ---
 
 ### 3. **적합성 지표 (SuitabilityAgent)**
-
 - 독창성 점수(Originality)와 시장성 점수(Market)를 종합하여 **특허 기술의 최종 지속가능성(Sustainability)** 점수를 산정하고, **LLM-as-a-Judge**를 통해 투자 의사결정을 지원합니다.  
   - **1차 평가 (수식 기반)**: 빠른 정량적 계산  
-  - **2차 평가 (LLM Judge)**: GPT-4가 점수를 해석하고 전략적 조언 제공
+  - **2차 평가 (LLM Judge)**: GPT-4가 점수를 해석하고 전략적 조언 제공  
 
-- **(1차 평가)**
+- **(1차 평가)**  
 
   $$
   SustainabilityScore = (Originality_{norm} \times 0.55) + (Market \times 0.45)
@@ -254,7 +253,7 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
     2️⃣ 맥락 이해 — 기술성과 시장성의 상호 관계 파악  
     3️⃣ 전략 제안 — 개선 또는 투자 우선순위 도출  
     4️⃣ 등급 재조정 — 필요 시 정량 결과 보정  
-    
+
 ---
 ## 9️⃣ ARCHITECTURE
 
