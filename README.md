@@ -367,6 +367,7 @@ Patent-analysis-report/
 ├── .gitignore
 ├── __init__.py
 ├── main.py
+├── main_multi_country.py # 최종 보고서 작성을 위한 실행
 ├── README.md
 └── requirements.txt
 ```
