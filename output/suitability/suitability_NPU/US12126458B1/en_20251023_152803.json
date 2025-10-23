@@ -1,0 +1,42 @@
+{
+  "tech_name": "NPU",
+  "originality_score": 0.993302103879027,
+  "market_score": 0.75,
+  "calculated_score": 0.8728,
+  "calculated_grade": "S",
+  "final_grade": "S",
+  "suitability_score": 0.8728,
+  "suitability_grade": "S",
+  "score_breakdown": {
+    "originality_raw": 0.993302103879027,
+    "originality_normalized": 0.9732084155161078,
+    "originality_weighted": 0.5353,
+    "market_score": 0.75,
+    "market_weighted": 0.3375,
+    "calculated_score": 0.8728,
+    "calculated_grade": "S"
+  },
+  "llm_evaluation": {
+    "suitability_grade": "S",
+    "confidence_score": 0.9,
+    "key_strengths": [
+      "매우 높은 기술적 독창성",
+      "우수한 시장 잠재력",
+      "혁신적인 기술 적용 가능성"
+    ],
+    "key_weaknesses": [
+      "상업화 준비도 부족",
+      "시장 규모 제한적"
+    ],
+    "investment_recommendation": "추천",
+    "risk_level": "보통",
+    "suitability_rationale": "이 특허(patent/US12126458B1/en)는 매우 높은 기술적 독창성을 가지고 있으며, 이는 혁신적인 멀티코어 네트워크 처리 장치의 핵심 자원 할당 및 전력 절약 기술을 포함합니다. 시장성 점수는 우수한 수준이지만, 시장 규모와 성장 잠재력 점수가 낮아 상업화 준비도가 부족한 것으로 나타났습니다. 따라서, 이 기술은 틈새 시장에서의 경쟁력을 갖추고 있으며, 장기적으로 지속 가능한 투자 가치가 있습니다. 그러나 상업화 준비도가 낮은 점은 투자자에게 일정한 리스크를 동반할 수 있습니다. 전반적으로 이 특허는 강력한 투자 추천을 받지만, 시장 진입 전략에 대한 세심한 검토가 필요합니다.",
+    "strategic_advice": "상업화 준비도를 높이기 위해 시장 조사 및 파트너십 구축에 집중해야 합니다. 또한, 기술의 응용 가능성을 넓혀 다양한 산업에 접근하는 전략을 고려해야 합니다."
+  },
+  "evaluation_summary": "'NPU' 기술 (등급: S, 점수: 0.87)\n\n평가: 이 특허(patent/US12126458B1/en)는 매우 높은 기술적 독창성을 가지고 있으며, 이는 혁신적인 멀티코어 네트워크 처리 장치의 핵심 자원 할당 및 전력 절약 기술을 포함합니다. 시장성 점수는 우수한 수준이지만, 시장 규모와 성장 잠재력 점수가 낮아 상업화 준비도가 부족한 것으로 나타났습니다. 따라서, 이 기술은 틈새 시장에서의 경쟁력을 갖추고 있으며, 장기적으로 지속 가능한 투자 가치가 있습니다. 그러나 상업화 준비도가 낮은 점은 투자자에게 일정한 리스크를 동반할 수 있습니다. 전반적으로 이 특허는 강력한 투자 추천을 받지만, 시장 진입 전략에 대한 세심한 검토가 필요합니다.\n\n전략적 조언: 상업화 준비도를 높이기 위해 시장 조사 및 파트너십 구축에 집중해야 합니다. 또한, 기술의 응용 가능성을 넓혀 다양한 산업에 접근하는 전략을 고려해야 합니다.",
+  "patent_id": "patent/US12126458B1/en",
+  "patent_title": "Core allocation and power saving for multi-core network processing units …",
+  "market_size_score": 0.25,
+  "growth_potential_score": 0.25,
+  "commercialization_readiness": 0.25
+}

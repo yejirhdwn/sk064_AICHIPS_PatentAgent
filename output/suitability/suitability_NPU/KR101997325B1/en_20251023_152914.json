@@ -1,0 +1,43 @@
+{
+  "tech_name": "NPU",
+  "originality_score": 0.9937739838671784,
+  "market_score": 0.7,
+  "calculated_score": 0.8513,
+  "calculated_grade": "S",
+  "final_grade": "B",
+  "suitability_score": 0.8513,
+  "suitability_grade": "B",
+  "score_breakdown": {
+    "originality_raw": 0.9937739838671784,
+    "originality_normalized": 0.9750959354687136,
+    "originality_weighted": 0.5363,
+    "market_score": 0.7,
+    "market_weighted": 0.315,
+    "calculated_score": 0.8513,
+    "calculated_grade": "S"
+  },
+  "llm_evaluation": {
+    "suitability_grade": "B",
+    "confidence_score": 0.85,
+    "key_strengths": [
+      "매우 높은 기술적 독창성",
+      "혁신적인 NPU 설계",
+      "차별화된 메모리 활용 방식"
+    ],
+    "key_weaknesses": [
+      "제한된 시장 규모",
+      "상업화 준비도 부족",
+      "성장 잠재력 낮음"
+    ],
+    "investment_recommendation": "보류",
+    "risk_level": "보통",
+    "suitability_rationale": "이 특허(patent/KR101997325B1/en)는 매우 높은 기술적 독창성을 지니고 있으며, 혁신적인 NPU 설계로 차별화된 메모리 활용 방식을 제안합니다. 그러나 시장성 점수가 낮아 시장 규모와 성장 가능성이 제한적이며, 상업화 준비도가 부족한 상황입니다. 이러한 점은 투자 리스크를 증가시키며, 장기적인 생존 가능성에 의문을 제기합니다. 따라서, 현재로서는 보류하는 것이 바람직하며, 시장 동향을 면밀히 관찰할 필요가 있습니다.",
+    "strategic_advice": "기술의 상용화를 위한 추가 연구와 개발이 필요합니다. 또한, 틈새 시장을 타겟으로 한 마케팅 전략을 고려해야 합니다."
+  },
+  "evaluation_summary": "'NPU' 기술 (등급: B, 점수: 0.85)\n\n평가: 이 특허(patent/KR101997325B1/en)는 매우 높은 기술적 독창성을 지니고 있으며, 혁신적인 NPU 설계로 차별화된 메모리 활용 방식을 제안합니다. 그러나 시장성 점수가 낮아 시장 규모와 성장 가능성이 제한적이며, 상업화 준비도가 부족한 상황입니다. 이러한 점은 투자 리스크를 증가시키며, 장기적인 생존 가능성에 의문을 제기합니다. 따라서, 현재로서는 보류하는 것이 바람직하며, 시장 동향을 면밀히 관찰할 필요가 있습니다.\n\n전략적 조언: 기술의 상용화를 위한 추가 연구와 개발이 필요합니다. 또한, 틈새 시장을 타겟으로 한 마케팅 전략을 고려해야 합니다.",
+  "patent_id": "patent/KR101997325B1/en",
+  "patent_title": "Processor with memory array operable as either last level cache slice or neural …",
+  "market_size_score": 0.25,
+  "growth_potential_score": 0.25,
+  "commercialization_readiness": 0.2
+}

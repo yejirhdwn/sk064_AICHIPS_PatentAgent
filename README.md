@@ -293,28 +293,36 @@ flowchart TB
 ---
 ## 🔟 OUTPUT ToC (Report 목차)
 
-1. **SUMMARY**
-    - 분석 대상 기술군의 종합 경쟁력 요약  
-    - 평균 점수 및 등급 분포를 통한 기술·시장 트렌드 요약  
-    - 기술 강점 및 개선이 필요한 영역 도출  
+### 1. SUMMARY
+- 분석 대상 기술군의 종합 경쟁력 요약  
+- 평균 점수 및 등급 분포를 통한 기술·시장 트렌드 요약  
+- 기술 강점 및 개선이 필요한 영역 도출  
 
-2. **DETAIL ANALYSIS**
-    - 특허별 상세 평가 결과  
-        - 각 특허의 제목, 식별번호, 기술 개요  
-        - 기술 독창성(Originality) 및 시장성(Market Score) 세부 점수  
-        - **Investment Analysis**  
-            - 투자 권고(Recommendation), 리스크 수준(Risk Level), 및 LLM 기반 정성 평가 근거(Rationale)  
+### 2. DETAIL ANALYSIS
+- 특허별 상세 평가 결과  
+  - 각 특허의 제목, 식별번호, 기술 개요  
+  - 기술 독창성(Originality) 및 시장성(Market Score) 세부 점수  
+  - **Investment Analysis**  
+    - 투자 권고(Recommendation), 리스크 수준(Risk Level), LLM 기반 정성 평가 근거(Rationale)  
 
-3. **REFERENCE**
-    - 분석에 활용된 특허 데이터 및 외부 시장자료 출처 목록  
-    - 데이터 수집·평가 방법론 (RAG + Tavily 하이브리드 검색 기반)  
-    - 주요 참고 문헌 및 시장 리포트 출처  
-    - 보고서 생성 정보 (생성일, 분석 대상, Agent 구조 등)  
+### 3. COUNTRY COMPARISON
+- 국가별 통계 및 성과 지표(특허 수, 평균 점수, 상위 등급 비율 등)  
+- 국가별 상세 비교(핵심 지표, 강·약점 하이라이트) 및 등급 분포  
 
-4. **APPENDIX**
-    - 평가 지표 및 점수화 기준 공식  
-    - Multi-Agent 분석 프로세스 설명  
-    - Grade Classification / Weighting Table 요약  
+### 4. TECHNOLOGY GAP ANALYSIS
+- 한국 기준 베이스라인 점수(Originality / Market / Suitability)  
+- 국가 간 기술 격차(Orig / Market / Suit / Overall Gap) 및 상태(Leading / Following 등)  
+- 전략적 시사점 및 권고사항(로드맵 / 파트너십 / GTM 전략 등)  
+
+### 5. REFERENCE
+- 분석에 활용된 특허 데이터 및 외부 시장자료 출처 목록  
+- 데이터 수집·평가 방법론 (**RAG + Tavily 하이브리드 검색 기반**)  
+- 주요 참고 문헌 및 시장 리포트 출처  
+- 보고서 생성 정보 (생성일, 분석 대상, Agent 구조 등)  
+
+### 6. APPENDIX
+- 평가 지표 및 점수화 기준 공식  
+- Multi-Agent 분석 프로세스 설명  
 
 ---
 ## 1️⃣1️⃣ DIRECTORY STRUCTURE

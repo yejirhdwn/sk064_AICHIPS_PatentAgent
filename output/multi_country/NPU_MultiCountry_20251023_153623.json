@@ -1,6 +1,6 @@
 {
   "tech_name": "NPU",
-  "generated_at": "2025-10-23T15:11:31.720633",
+  "generated_at": "2025-10-23T15:36:23.883264",
   "countries": [
     {
       "country_code": "US",
@@ -36,24 +36,24 @@
             "5G Networks",
             "AI-Powered Communication"
           ],
-          "market_rationale": "이 특허(US20090257751A1)는 광 회로로의 트래픽 흐름 전환을 위한 데이터 패킷 처리 기술을 다루고 있으며, 이는 2024년 138억 7천만 달러로 평가되는 광 연결 시장에서 중요한 역할을 할 수 있습니다. 이 시장은 2025년 153억 8천만 달러로 성장할 것으로 예상되며, 2024년부터 2028년까지 67억 8천만 달러의 성장을 기록할 것으로 보입니다. 또한, 상용화 준비도는 1~2년 내에 명확한 고객을 확보할 수 있는 수준으로 평가됩니다. 이러한 요소들은 이 특허 기술이 향후 통신 및 데이터 센터 분야에서 중요한 기여를 할 수 있음을 시사합니다.",
+          "market_rationale": "이 특허(US20090257751A1)는 광 회로로의 트래픽 흐름 전환을 위한 데이터 패킷 처리 기술을 다루고 있습니다. 이 기술은 2024년 138억 7천만 달러로 평가되는 광학 인터커넥트 시장에서 중요한 역할을 할 것으로 예상되며, 2025년부터 2030년까지 CAGR 15%의 성장이 예상됩니다. 또한, 5G 네트워크의 확산과 모바일 데이터 트래픽 증가로 인해 광 네트워크 하드웨어 시장은 2024년부터 2028년까지 67억 8천만 달러 성장할 것으로 보입니다. 이 기술은 1~2년 내에 상용화가 가능할 것으로 판단되며, 명확한 고객 기반이 존재합니다.",
           "llm_evaluation": {
             "suitability_grade": "B",
             "confidence_score": 0.85,
             "key_strengths": [
               "매우 높은 기술적 독창성",
-              "차별화된 기술적 접근",
-              "특정 틈새 시장에서의 가능성"
+              "차별화된 기술",
+              "혁신적인 접근 방식"
             ],
             "key_weaknesses": [
-              "제한된 시장 규모",
+              "제한적인 시장 규모",
               "낮은 성장 잠재력",
               "상업화 준비도 부족"
             ],
             "investment_recommendation": "보류",
             "risk_level": "보통",
-            "suitability_rationale": "이 특허(patent/US20090257751A1/en)는 매우 높은 기술적 독창성을 보유하고 있으며, 이는 혁신적인 기술적 접근을 의미합니다. 그러나 시장성 점수가 낮아 시장 규모와 성장 잠재력이 제한적임을 나타냅니다. 상업화 준비도가 낮아 실제 시장에서의 성공 가능성이 낮을 수 있습니다. 따라서, 이 기술은 특정 틈새 시장에서의 활용 가능성이 있지만, 대규모 상업화에는 도전이 따를 것입니다. 이러한 점을 고려할 때, 투자에 대한 추천은 보류하며, 시장 진입 전략을 재검토할 필요가 있습니다.",
-            "strategic_advice": "특허의 독창성을 살려 특정 틈새 시장을 타겟으로 한 마케팅 전략을 개발해야 합니다. 또한, 상업화 준비도를 높이기 위한 추가 연구 및 개발이 필요합니다."
+            "suitability_rationale": "이 특허(patent/US20090257751A1/en)는 매우 높은 기술적 독창성을 가지고 있지만, 시장성 점수가 낮아 상업적 성공 가능성이 제한적입니다. 독창성 점수가 0.9898로 혁신적인 기술임에도 불구하고, 시장 규모와 성장 잠재력이 각각 0.25와 0.2로 낮아 시장 진입에 어려움이 예상됩니다. 상업화 준비도가 부족하여 실제 시장에서의 경쟁력 확보가 어려울 수 있습니다. 따라서, 이 특허는 틈새 시장을 겨냥한 전략이 필요하며, 투자에 대한 리스크가 존재합니다.",
+            "strategic_advice": "기술의 독창성을 활용하여 특정 산업군에 맞춘 맞춤형 솔루션을 개발하는 것이 중요합니다. 또한, 시장 조사와 파트너십을 통해 상업화 준비도를 높이는 전략이 필요합니다."
           }
         },
         {
@@ -85,25 +85,25 @@
             "Telecommunications",
             "AI Hardware",
             "Consumer Electronics",
-            "Automotive"
+            "Data Centers"
           ],
-          "market_rationale": "이 특허(US12126458B1)는 다중 코어 네트워크 처리 장치의 전력 관리 및 코어 할당 기술을 다루고 있으며, 이는 통신 및 AI 하드웨어 시장에서 중요한 역할을 할 수 있습니다. 네트워크 처리 장치(NPU) 시장은 2024년 38억 5천만 달러에서 2033년까지 124억 5천만 달러에 이를 것으로 예상되며, CAGR은 12.3%에 달합니다. 또한, AI 반도체 시장은 2025년 150억 달러에 도달할 것으로 보이며, 이 기간 동안 25%의 성장률을 기록할 것으로 전망됩니다. 이 기술은 1~2년 내에 상용화가 가능할 것으로 보이며, 명확한 고객 기반이 존재합니다.",
+          "market_rationale": "이 특허(US12126458B1)는 다중 코어 네트워크 처리 장치의 전력 관리 및 코어 할당 기술을 다루고 있으며, 이는 통신 및 AI 하드웨어 시장에서 중요한 역할을 할 수 있습니다. 네트워크 처리 장치(NPU) 시장은 2024년까지 약 10.7억 달러에 이를 것으로 예상되며, 2033년까지 28억 달러에 도달할 것으로 보입니다. 이 시장은 CAGR 12.3%로 성장할 것으로 전망되고 있습니다. 또한, 이 기술은 1~2년 내에 상용화가 가능할 것으로 보이며, 명확한 고객 기반이 존재합니다.",
           "llm_evaluation": {
             "suitability_grade": "S",
-            "confidence_score": 0.9,
+            "confidence_score": 0.95,
             "key_strengths": [
               "매우 높은 기술적 독창성",
               "우수한 시장 잠재력",
-              "혁신적인 기술 접근 방식"
+              "혁신적인 전력 절약 기술"
             ],
             "key_weaknesses": [
               "상업화 준비도가 낮음",
-              "시장 규모가 제한적임"
+              "시장 규모 점수가 낮음"
             ],
             "investment_recommendation": "추천",
             "risk_level": "보통",
-            "suitability_rationale": "이 특허(patent/US12126458B1/en)는 매우 높은 기술적 독창성을 보유하고 있으며, 이는 혁신적인 NPU 기술의 개발을 통해 차별화된 경쟁력을 제공합니다. 시장성 점수는 양호하나, 시장 규모와 성장 잠재력이 상대적으로 낮아 상업화 준비도가 부족한 점이 아쉽습니다. 그러나 기술적 독창성이 높기 때문에 틈새 시장에서의 성공 가능성이 존재합니다. 따라서, 이 특허는 장기적인 투자 가치가 있으며, 적절한 마케팅 전략과 상업화 노력이 뒷받침된다면 성공적인 결과를 기대할 수 있습니다.",
-            "strategic_advice": "상업화 준비도를 높이기 위해 시장 조사 및 파트너십을 강화해야 합니다. 또한, 기술의 차별성을 강조하는 마케팅 전략을 수립하여 틈새 시장에서의 입지를 다져야 합니다."
+            "suitability_rationale": "이 특허(patent/US12126458B1/en)는 매우 높은 기술적 독창성을 바탕으로 혁신적인 다중 코어 네트워크 처리 유닛의 전력 할당 및 절약 기술을 제공합니다. 독창성 점수가 0.9933으로, 이는 시장에서 차별화된 기술로 자리잡을 가능성이 큽니다. 그러나 시장성 점수가 0.7500으로, 상업화 준비도와 시장 규모가 낮은 점은 우려 요소로 작용할 수 있습니다. 그럼에도 불구하고, 해당 기술이 제공하는 전력 절약 기능은 현재의 에너지 효율성 요구에 부합하여 시장에서의 경쟁력을 높일 수 있습니다. 따라서, 장기적인 투자 가치가 존재하며, 적절한 상업화 전략이 필요합니다.",
+            "strategic_advice": "상업화 준비도를 높이기 위해 파트너십을 통해 시장 진입 전략을 강화해야 합니다. 또한, 시장 규모를 확장하기 위한 추가 연구와 개발이 필요합니다."
           }
         }
       ]
@@ -113,12 +113,11 @@
       "country_name": "South Korea",
       "total_patents": 3,
       "successful_analyses": 2,
-      "avg_originality_score": 0.9933,
-      "avg_market_score": 0.725,
-      "avg_suitability_score": 0.8616,
+      "avg_originality_score": 0.9901,
+      "avg_market_score": 0.8,
+      "avg_suitability_score": 0.8881,
       "grade_distribution": {
-        "S": 1,
-        "A": 1
+        "S": 2
       },
       "patents": [
         {
@@ -138,12 +137,12 @@
           "abstract": "The above at least one artificial neural network model includes an AI keyword recognition model and an AI gesture recognition model, In the above first mode, the neural network processing unit performs an inference operation of the AI keyword recognition model, but stops the inference operation of …",
           "publication_date": "2025-04-25",
           "assignee": "주식회사 딥엑스",
-          "originality_score": 0.9945831681860219,
+          "originality_score": 0.9863589928489874,
           "market_score": 0.75,
           "market_size_score": 0.25,
           "growth_potential_score": 0.25,
           "commercialization_readiness": 0.25,
-          "suitability_score": 0.8756,
+          "suitability_score": 0.8575,
           "final_grade": "S",
           "application_domains": [
             "AI Inference Market",
@@ -152,10 +151,10 @@
             "Consumer Electronics",
             "Automotive"
           ],
-          "market_rationale": "이 특허(KR102799500B1)는 AI 키워드 인식 모델과 제스처 인식 모델을 포함하는 전자 장치에 관한 것으로, AI 추론 시장에서의 적용 가능성이 높습니다. AI 추론 시장은 2024년 762억 5천만 달러에서 2030년까지 2549억 8천만 달러로 성장할 것으로 예상되며, CAGR은 25% 이상입니다. 또한, 신경망처리장치(NPU) 시장은 2031년까지 24억 달러에 도달할 것으로 보이며, 이 기간 동안 17.5%의 성장률을 기록할 것으로 전망됩니다. 이 기술은 즉시 상용화가 가능하며, 다양한 산업에서의 수요가 증가하고 있습니다.",
+          "market_rationale": "이 특허(KR102799500B1)는 AI 키워드 인식 모델과 제스처 인식 모델을 포함하는 전자 장치에 관한 것으로, AI 추론 시장에서의 적용 가능성이 높습니다. AI 추론 시장은 2024년 762억 5천만 달러에서 2030년까지 2549억 8천만 달러로 성장할 것으로 예상되며, CAGR은 25% 이상입니다. 또한, 신경망처리장치(NPU) 시장은 2025년까지 24억 달러에 도달할 것으로 보이며, 이 시장의 성장률은 17.5%에 이를 것으로 전망됩니다. 이 기술은 즉시 상용화가 가능하며, 명확한 고객 기반이 존재합니다.",
           "llm_evaluation": {
             "suitability_grade": "S",
-            "confidence_score": 0.95,
+            "confidence_score": 0.9,
             "key_strengths": [
               "매우 높은 기술적 독창성",
               "우수한 시장 잠재력",
@@ -163,12 +162,12 @@
             ],
             "key_weaknesses": [
               "시장 규모 점수가 낮음",
-              "상업화 준비도가 부족함"
+              "상업화 준비도가 낮음"
             ],
             "investment_recommendation": "추천",
             "risk_level": "보통",
-            "suitability_rationale": "이 특허(patent/KR102799500B1/en)는 매우 높은 기술적 독창성을 바탕으로 혁신적인 NPU 기술을 제공합니다. 시장성 점수가 우수하나, 시장 규모와 상업화 준비도가 낮아 초기 투자 리스크가 존재합니다. 그러나 기술적 독창성 덕분에 틈새 시장에서의 경쟁력을 확보할 가능성이 높습니다. 따라서 장기적인 관점에서 이 특허는 투자 가치가 있으며, 시장의 성장 가능성을 고려할 때 긍정적인 평가를 받을 수 있습니다. 다만, 상업화 전략을 강화할 필요가 있습니다.",
-            "strategic_advice": "상업화 준비도를 높이기 위해 파트너십을 모색하고, 시장 진입 전략을 구체화해야 합니다. 또한, 기술의 적용 분야를 다양화하여 시장 규모를 확대하는 것이 중요합니다."
+            "suitability_rationale": "이 특허(patent/KR102799500B1/en)는 매우 높은 기술적 독창성을 바탕으로 혁신적인 NPU 기술을 제공하고 있습니다. 독창성 점수가 0.9864로, 이는 시장에서의 차별화된 경쟁력을 의미합니다. 그러나 시장성 점수가 0.7500으로 다소 낮은 점수를 기록하고 있어, 시장 규모와 성장 잠재력에서 제약이 있을 수 있습니다. 상업화 준비도가 낮은 점수로 나타나, 초기 투자 시 리스크가 존재할 수 있습니다. 그럼에도 불구하고, 기술적 독창성을 활용한 틈새 시장 전략을 통해 장기적인 투자 가치를 창출할 가능성이 높습니다.",
+            "strategic_advice": "이 기술의 상업화에 앞서 시장 조사를 통해 적합한 타겟 시장을 명확히 설정하는 것이 중요합니다. 또한, 상업화 준비도를 높이기 위해 파트너십을 고려하는 것이 바람직합니다."
           }
         },
         {
@@ -178,37 +177,38 @@
           "abstract": "And the processor rewrites-validates the plurality of components and the memory array to rewrite-validate the LLC to transition from the second mode to the first mode. The method of claim 1, To rewrite-validate the LLC to transition from the first mode to the second mode, the processor processes a …",
           "publication_date": "2019-10-01",
           "assignee": "비아 얼라이언스 세미컨덕터 씨오., 엘티디.",
-          "originality_score": 0.9920317362607298,
-          "market_score": 0.7,
-          "market_size_score": 0.25,
+          "originality_score": 0.9937739838671784,
+          "market_score": 0.85,
+          "market_size_score": 0.35,
           "growth_potential_score": 0.25,
-          "commercialization_readiness": 0.2,
-          "suitability_score": 0.8475,
-          "final_grade": "A",
+          "commercialization_readiness": 0.25,
+          "suitability_score": 0.9188,
+          "final_grade": "S",
           "application_domains": [
-            "Neural Processing Units (NPUs)",
-            "AI Computing",
-            "Edge Computing",
-            "Consumer Electronics",
-            "Automotive"
+            "AI processors",
+            "Neural Processing Units (NPU)",
+            "Edge computing",
+            "Data centers",
+            "High-performance computing"
           ],
-          "market_rationale": "이 특허(KR101997325B1)는 메모리 배열을 마지막 레벨 캐시 슬라이스 또는 신경망 처리 장치로 작동할 수 있는 프로세서에 관한 것입니다. 이 기술은 신경망 처리 장치(NPU) 시장에서 중요한 역할을 할 수 있으며, 해당 시장은 2024년 29억 달러에서 2031년까지 24억 달러에 이를 것으로 예상됩니다. 이 시장은 2025년부터 2031년까지 CAGR 17.5%로 성장할 것으로 보입니다. 현재 이 기술은 1~2년 내에 상용화될 가능성이 있으며, 프로토타입 검증이 완료된 상태입니다.",
+          "market_rationale": "이 특허(KR101997325B1)는 메모리 배열을 마지막 레벨 캐시 슬라이스 또는 신경망 처리 장치(NPU)로 작동할 수 있는 프로세서에 관한 것입니다. 이 기술은 AI PC 시장의 핵심 구성 요소로, 2028년까지 AI 반도체 시장이 602억 달러에 이를 것으로 예상되며, 이는 CAGR 25% 이상의 성장을 나타냅니다. 또한, 이 기술은 즉시~1년 내에 적용 가능하며, 명확한 고객 기반이 존재합니다. 따라서 상용화 준비도가 높습니다. 이러한 요소들은 이 특허의 시장성을 더욱 강화합니다.",
           "llm_evaluation": {
-            "suitability_grade": "A",
-            "confidence_score": 0.85,
+            "suitability_grade": "S",
+            "confidence_score": 0.95,
             "key_strengths": [
               "매우 높은 기술적 독창성",
-              "차별화된 기술적 접근",
-              "AI 및 머신러닝 시장의 성장 가능성"
+              "혁신적인 NPU 기술",
+              "차별화된 메모리 배열 기능"
             ],
             "key_weaknesses": [
-              "제한된 시장 규모",
-              "상업화 준비 부족"
+              "제한적인 시장 규모",
+              "낮은 성장 잠재력",
+              "상업화 준비도 부족"
             ],
-            "investment_recommendation": "추천",
-            "risk_level": "보통",
-            "suitability_rationale": "이 특허(patent/KR101997325B1/en)는 매우 높은 기술적 독창성을 지니고 있으며, 이는 혁신적인 NPU 기술로서 차별화된 접근을 보여줍니다. 그러나 시장성 점수가 낮아 시장 규모와 성장 잠재력이 제한적이라는 점은 우려 요소입니다. 상업화 준비도가 낮아 초기 투자 리스크가 존재하지만, AI 및 머신러닝 분야의 지속적인 성장 가능성은 이 기술의 장기적인 생존 가능성을 높일 수 있습니다. 따라서, 기술적 독창성을 바탕으로 틈새 시장을 겨냥한 전략이 필요합니다.",
-            "strategic_advice": "시장 진입을 위해 초기 파트너십을 통해 상업화 준비도를 높이는 것이 중요합니다. 또한, 기술의 응용 가능성을 다양한 산업에 확장하는 전략을 고려해야 합니다."
+            "investment_recommendation": "보류",
+            "risk_level": "높음",
+            "suitability_rationale": "이 특허(patent/KR101997325B1/en)는 매우 높은 기술적 독창성을 보유하고 있으며, 혁신적인 NPU 기술로서 메모리 배열을 활용한 차별화된 기능을 제공합니다. 그러나 시장성 점수가 낮아 시장 규모와 성장 잠재력이 제한적이며, 상업화 준비도 또한 부족한 상황입니다. 이러한 점은 장기적인 수익성을 확보하는 데 어려움을 초래할 수 있습니다. 따라서, 현재로서는 투자에 대한 리스크가 높다고 판단되며, 시장 상황의 개선이 필요합니다.",
+            "strategic_advice": "기술의 상업화 가능성을 높이기 위해 시장 조사 및 파트너십 구축을 고려해야 합니다. 또한, 틈새 시장을 타겟으로 한 전략을 개발하여 기술의 적용 범위를 확대하는 것이 중요합니다."
           }
         }
       ]
@@ -258,18 +258,18 @@
   ],
   "gap_analysis": {
     "korea_scores": {
-      "originality": 0.9933,
-      "market": 0.725,
-      "suitability": 0.8616
+      "originality": 0.9901,
+      "market": 0.8,
+      "suitability": 0.8881
     },
     "comparisons": [
       {
         "country_code": "US",
         "country_name": "United States",
-        "originality_gap": -0.0018,
-        "market_gap": 0.0,
-        "suitability_gap": -0.0039,
-        "overall_gap": -0.0019,
+        "originality_gap": 0.0014,
+        "market_gap": -0.075,
+        "suitability_gap": -0.0304,
+        "overall_gap": -0.0347,
         "status": "Behind"
       }
     ]

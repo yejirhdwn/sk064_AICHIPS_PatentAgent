@@ -1,0 +1,35 @@
+{
+  "tech_name": "NPU",
+  "patent_id": "US12126458B1",
+  "patent_title": "Core allocation and power saving for multi-core network processing units …",
+  "market_size_score": 0.25,
+  "growth_potential_score": 0.25,
+  "commercialization_readiness": 0.25,
+  "market_score": 0.75,
+  "application_domains": [
+    "Network Processing Units",
+    "Telecommunications",
+    "AI Hardware",
+    "Edge Computing",
+    "Consumer Electronics"
+  ],
+  "commercialization_potential": "High",
+  "market_rationale": "이 특허(US12126458B1)는 다중 코어 네트워크 처리 장치의 전력 관리 및 코어 할당 기술을 다루고 있으며, 이는 2024년 38억 5천만 달러에서 2033년까지 124억 5천만 달러로 성장할 것으로 예상되는 네트워크 처리 장치(NPU) 시장에 적용될 수 있습니다. 이 시장은 12.3%의 CAGR을 기록할 것으로 보이며, 특히 AI 및 5G 기술의 발전에 힘입어 더욱 성장할 것입니다. 현재 이 기술은 즉시 상용화가 가능하며, 명확한 고객 기반이 존재합니다. 따라서 이 특허는 상용화 가능성이 높습니다.",
+  "demand_signals": [
+    "5G 네트워크 확산",
+    "AI 기술의 발전",
+    "에지 컴퓨팅 수요 증가",
+    "전력 효율성 향상 필요성",
+    "통신 및 IoT 장치의 증가"
+  ],
+  "sources": [
+    "[RAG] C:\\workspace\\skala_gai\\Patent-analysis-report\\data\\품목별ICT시장동향_AI반도체.pdf",
+    "[Web] Network Processing Unit NPU Market Size And Foreca (https://www.verifiedmarketreports.com/product/network-processing-unit-npu-market-size-and-forecast/)",
+    "[Web] Network Processing Unit NPU Market Landscape, Tren (https://www.linkedin.com/pulse/network-processing-unit-npu-market-landscape-trends-cb7fe/)",
+    "[Web] Network Processing Unit (NPU) Market Dynamics: Dri (https://www.datainsightsmarket.com/reports/network-processing-unit-npu-1667520)",
+    "[Web] Exploring Consumer Shifts in Embedded AI NPU Marke (https://www.marketreportanalytics.com/reports/embedded-ai-npu-382260)",
+    "[Web] Neural processing unit Market: trends & opportunit (https://www.wiseguyreports.com/reports/neural-processing-unit-market)",
+    "[Web] Network Processing Unit Market Size & Share Report (https://www.grandviewresearch.com/industry-analysis/network-processing-unit-market-report)"
+  ],
+  "error": null
+}

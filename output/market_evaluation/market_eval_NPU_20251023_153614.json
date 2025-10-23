@@ -1,0 +1,29 @@
+{
+  "tech_name": "NPU",
+  "patent_id": "KR101997325B1",
+  "patent_title": "Processor with memory array operable as either last level cache slice or neural …",
+  "market_size_score": 0.35,
+  "growth_potential_score": 0.25,
+  "commercialization_readiness": 0.25,
+  "market_score": 0.85,
+  "application_domains": [
+    "AI processors",
+    "Neural Processing Units (NPU)",
+    "Edge computing",
+    "Data centers",
+    "High-performance computing"
+  ],
+  "commercialization_potential": "High",
+  "market_rationale": "이 특허(KR101997325B1)는 메모리 배열을 마지막 레벨 캐시 슬라이스 또는 신경망 처리 장치(NPU)로 작동할 수 있는 프로세서에 관한 것입니다. 이 기술은 AI PC 시장의 핵심 구성 요소로, 2028년까지 AI 반도체 시장이 602억 달러에 이를 것으로 예상되며, 이는 CAGR 25% 이상의 성장을 나타냅니다. 또한, 이 기술은 즉시~1년 내에 적용 가능하며, 명확한 고객 기반이 존재합니다. 따라서 상용화 준비도가 높습니다. 이러한 요소들은 이 특허의 시장성을 더욱 강화합니다.",
+  "demand_signals": [
+    "AI 반도체 시장의 급성장",
+    "온디바이스 AI의 필요성 증가",
+    "NPU의 전력 효율성 향상",
+    "AI 작업의 로컬 실행 증가",
+    "클라우드 의존도 감소"
+  ],
+  "sources": [
+    "[RAG] C:\\workspace\\skala_gai\\Patent-analysis-report\\data\\품목별ICT시장동향_AI반도체.pdf"
+  ],
+  "error": null
+}

@@ -4,7 +4,7 @@ from pathlib import Path
 
 # ✅ 올바른 PDF 경로 입력 (하나만!)
 TARGET_PDF = Path(
-    r"C:\workspace\skala_gai\Patent-analysis-report\output\reports\한국_NPU_기술경쟁력보고서_20251023_151132.pdf"
+    r"C:\workspace\skala_gai\Patent-analysis-report\output\reports\한국_NPU_기술경쟁력보고서_20251023_153624.pdf"
 )
 
 def _is_wsl() -> bool:

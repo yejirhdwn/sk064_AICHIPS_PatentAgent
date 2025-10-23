@@ -1,0 +1,35 @@
+{
+  "tech_name": "NPU",
+  "patent_id": "KR102799500B1",
+  "patent_title": "Electronic devices configured to perform inference operations",
+  "market_size_score": 0.25,
+  "growth_potential_score": 0.25,
+  "commercialization_readiness": 0.25,
+  "market_score": 0.75,
+  "application_domains": [
+    "AI Inference Market",
+    "Neural Processing Units (NPUs)",
+    "Edge Computing",
+    "Consumer Electronics",
+    "Automotive"
+  ],
+  "commercialization_potential": "High",
+  "market_rationale": "이 특허(KR102799500B1)는 AI 키워드 인식 모델과 제스처 인식 모델을 포함하는 전자 장치에 관한 것으로, AI 추론 시장에서의 적용 가능성이 높습니다. AI 추론 시장은 2024년 762억 5천만 달러에서 2030년까지 2549억 8천만 달러로 성장할 것으로 예상되며, CAGR은 25% 이상입니다. 또한, 신경망처리장치(NPU) 시장은 2025년까지 24억 달러에 도달할 것으로 보이며, 이 시장의 성장률은 17.5%에 이를 것으로 전망됩니다. 이 기술은 즉시 상용화가 가능하며, 명확한 고객 기반이 존재합니다.",
+  "demand_signals": [
+    "AI 기술의 수요 증가",
+    "온디바이스 AI로의 전환",
+    "5G 네트워크 확산",
+    "자동차 및 소비자 전자제품에서의 AI 통합",
+    "AI 반도체 시장의 성장"
+  ],
+  "sources": [
+    "[RAG] C:\\workspace\\skala_gai\\Patent-analysis-report\\data\\품목별ICT시장동향_AI반도체.pdf",
+    "[Web] AI Inference Market Size, Share & Growth, 2025 To  (https://www.marketsandmarkets.com/Market-Reports/ai-inference-market-189921964.html)",
+    "[Web] Neural Processing Units (NPUs) Market Size, Share  (https://www.industryarc.com/PressRelease/4540/Neural-Processing-Units-(NPUs)-Market)",
+    "[Web] Exploring Consumer Shifts in Embedded AI NPU Marke (https://www.marketreportanalytics.com/reports/embedded-ai-npu-382260)",
+    "[Web] NPU Chip Market Forecast 2025-2031: Rapid 23% CAGR (https://www.openpr.com/news/4190357/npu-chip-market-forecast-2025-2031-rapid-23-cagr-to-drive)",
+    "[Web] Neural processing unit Market: trends & opportunit (https://www.wiseguyreports.com/reports/neural-processing-unit-market)",
+    "[Web] Network Processing Unit Market Size & Share Report (https://www.grandviewresearch.com/industry-analysis/network-processing-unit-market-report)"
+  ],
+  "error": null
+}

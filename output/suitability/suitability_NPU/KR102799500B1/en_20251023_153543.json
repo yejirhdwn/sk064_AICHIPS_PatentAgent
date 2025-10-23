@@ -1,0 +1,42 @@
+{
+  "tech_name": "NPU",
+  "originality_score": 0.9863589928489874,
+  "market_score": 0.75,
+  "calculated_score": 0.8575,
+  "calculated_grade": "S",
+  "final_grade": "S",
+  "suitability_score": 0.8575,
+  "suitability_grade": "S",
+  "score_breakdown": {
+    "originality_raw": 0.9863589928489874,
+    "originality_normalized": 0.9454359713959497,
+    "originality_weighted": 0.52,
+    "market_score": 0.75,
+    "market_weighted": 0.3375,
+    "calculated_score": 0.8575,
+    "calculated_grade": "S"
+  },
+  "llm_evaluation": {
+    "suitability_grade": "S",
+    "confidence_score": 0.9,
+    "key_strengths": [
+      "매우 높은 기술적 독창성",
+      "우수한 시장 잠재력",
+      "혁신적인 NPU 기술"
+    ],
+    "key_weaknesses": [
+      "시장 규모 점수가 낮음",
+      "상업화 준비도가 낮음"
+    ],
+    "investment_recommendation": "추천",
+    "risk_level": "보통",
+    "suitability_rationale": "이 특허(patent/KR102799500B1/en)는 매우 높은 기술적 독창성을 바탕으로 혁신적인 NPU 기술을 제공하고 있습니다. 독창성 점수가 0.9864로, 이는 시장에서의 차별화된 경쟁력을 의미합니다. 그러나 시장성 점수가 0.7500으로 다소 낮은 점수를 기록하고 있어, 시장 규모와 성장 잠재력에서 제약이 있을 수 있습니다. 상업화 준비도가 낮은 점수로 나타나, 초기 투자 시 리스크가 존재할 수 있습니다. 그럼에도 불구하고, 기술적 독창성을 활용한 틈새 시장 전략을 통해 장기적인 투자 가치를 창출할 가능성이 높습니다.",
+    "strategic_advice": "이 기술의 상업화에 앞서 시장 조사를 통해 적합한 타겟 시장을 명확히 설정하는 것이 중요합니다. 또한, 상업화 준비도를 높이기 위해 파트너십을 고려하는 것이 바람직합니다."
+  },
+  "evaluation_summary": "'NPU' 기술 (등급: S, 점수: 0.86)\n\n평가: 이 특허(patent/KR102799500B1/en)는 매우 높은 기술적 독창성을 바탕으로 혁신적인 NPU 기술을 제공하고 있습니다. 독창성 점수가 0.9864로, 이는 시장에서의 차별화된 경쟁력을 의미합니다. 그러나 시장성 점수가 0.7500으로 다소 낮은 점수를 기록하고 있어, 시장 규모와 성장 잠재력에서 제약이 있을 수 있습니다. 상업화 준비도가 낮은 점수로 나타나, 초기 투자 시 리스크가 존재할 수 있습니다. 그럼에도 불구하고, 기술적 독창성을 활용한 틈새 시장 전략을 통해 장기적인 투자 가치를 창출할 가능성이 높습니다.\n\n전략적 조언: 이 기술의 상업화에 앞서 시장 조사를 통해 적합한 타겟 시장을 명확히 설정하는 것이 중요합니다. 또한, 상업화 준비도를 높이기 위해 파트너십을 고려하는 것이 바람직합니다.",
+  "patent_id": "patent/KR102799500B1/en",
+  "patent_title": "Electronic devices configured to perform inference operations",
+  "market_size_score": 0.25,
+  "growth_potential_score": 0.25,
+  "commercialization_readiness": 0.25
+}

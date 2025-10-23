@@ -1,0 +1,43 @@
+{
+  "tech_name": "NPU",
+  "originality_score": 0.9897842056932966,
+  "market_score": 0.7,
+  "calculated_score": 0.8425,
+  "calculated_grade": "A",
+  "final_grade": "B",
+  "suitability_score": 0.8425,
+  "suitability_grade": "B",
+  "score_breakdown": {
+    "originality_raw": 0.9897842056932966,
+    "originality_normalized": 0.9591368227731865,
+    "originality_weighted": 0.5275,
+    "market_score": 0.7,
+    "market_weighted": 0.315,
+    "calculated_score": 0.8425,
+    "calculated_grade": "A"
+  },
+  "llm_evaluation": {
+    "suitability_grade": "B",
+    "confidence_score": 0.85,
+    "key_strengths": [
+      "매우 높은 기술적 독창성",
+      "차별화된 기술",
+      "혁신적인 접근 방식"
+    ],
+    "key_weaknesses": [
+      "제한적인 시장 규모",
+      "낮은 성장 잠재력",
+      "상업화 준비도 부족"
+    ],
+    "investment_recommendation": "보류",
+    "risk_level": "보통",
+    "suitability_rationale": "이 특허(patent/US20090257751A1/en)는 매우 높은 기술적 독창성을 가지고 있지만, 시장성 점수가 낮아 상업적 성공 가능성이 제한적입니다. 독창성 점수가 0.9898로 혁신적인 기술임에도 불구하고, 시장 규모와 성장 잠재력이 각각 0.25와 0.2로 낮아 시장 진입에 어려움이 예상됩니다. 상업화 준비도가 부족하여 실제 시장에서의 경쟁력 확보가 어려울 수 있습니다. 따라서, 이 특허는 틈새 시장을 겨냥한 전략이 필요하며, 투자에 대한 리스크가 존재합니다.",
+    "strategic_advice": "기술의 독창성을 활용하여 특정 산업군에 맞춘 맞춤형 솔루션을 개발하는 것이 중요합니다. 또한, 시장 조사와 파트너십을 통해 상업화 준비도를 높이는 전략이 필요합니다."
+  },
+  "evaluation_summary": "'NPU' 기술 (등급: B, 점수: 0.84)\n\n평가: 이 특허(patent/US20090257751A1/en)는 매우 높은 기술적 독창성을 가지고 있지만, 시장성 점수가 낮아 상업적 성공 가능성이 제한적입니다. 독창성 점수가 0.9898로 혁신적인 기술임에도 불구하고, 시장 규모와 성장 잠재력이 각각 0.25와 0.2로 낮아 시장 진입에 어려움이 예상됩니다. 상업화 준비도가 부족하여 실제 시장에서의 경쟁력 확보가 어려울 수 있습니다. 따라서, 이 특허는 틈새 시장을 겨냥한 전략이 필요하며, 투자에 대한 리스크가 존재합니다.\n\n전략적 조언: 기술의 독창성을 활용하여 특정 산업군에 맞춘 맞춤형 솔루션을 개발하는 것이 중요합니다. 또한, 시장 조사와 파트너십을 통해 상업화 준비도를 높이는 전략이 필요합니다.",
+  "patent_id": "patent/US20090257751A1/en",
+  "patent_title": "Aggregating Optical Network Device",
+  "market_size_score": 0.25,
+  "growth_potential_score": 0.2,
+  "commercialization_readiness": 0.25
+}
