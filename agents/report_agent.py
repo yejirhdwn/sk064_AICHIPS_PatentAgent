@@ -229,27 +229,29 @@ class ReportAgent:
         self,
         all_patent_results: List[Dict[str, Any]]
     ) -> Dict[str, Any]:
-        """보고서 데이터 준비"""
-        
         patents_summary = []
         total_originality = 0
         total_market = 0
         grade_distribution = {"S": 0, "A": 0, "B": 0, "C": 0, "D": 0}
-        
+
         for result in all_patent_results:
-            patent_id = result.get("target_patent_id", "N/A")
-            patent_title = result.get("first_item", {}).get("title", "N/A")
-            
+            # ✅ 수정: 신/구 포맷 병행 지원
+            patent_id = result.get("target_patent_id") or result.get("patent_id", "N/A")
+            patent_title = (
+                (result.get("first_item") or {}).get("title")
+                or result.get("title", "N/A")
+            )
+
             originality = result.get("originality_score", 0) or 0
             market = result.get("market_score", 0) or 0
             grade = result.get("final_grade", "N/A")
-            
+
             total_originality += originality
             total_market += market
-            
+
             if grade in grade_distribution:
                 grade_distribution[grade] += 1
-            
+
             patents_summary.append({
                 "patent_id": patent_id,
                 "title": patent_title,
@@ -262,11 +264,11 @@ class ReportAgent:
                 "application_domains": result.get("application_domains", []),
                 "llm_evaluation": result.get("llm_evaluation", {})
             })
-        
+
         n = len(all_patent_results)
         avg_originality = total_originality / n if n > 0 else 0
         avg_market = total_market / n if n > 0 else 0
-        
+
         return {
             "title": f"{self.tech_name} Technology Competitiveness Analysis Report",
             "tech_name": self.tech_name,
@@ -280,6 +282,7 @@ class ReportAgent:
                 "grade_distribution": grade_distribution
             }
         }
+
     
     def _create_pdf(self, pdf_path: Path, report_data: Dict[str, Any]):
         """PDF 파일 생성"""
@@ -570,14 +573,17 @@ class ReportAgent:
         # 등급 분포 테이블
         grade_dist = report_data["statistics"]["grade_distribution"]
         grade_data = [["Grade", "Count", "Percentage"]]
-        total = report_data['total_patents_analyzed']
-        
+        total = int(report_data.get('total_patents_analyzed', 0) or 0)
+
         for grade in ["S", "A", "B", "C", "D"]:
-            count = grade_dist.get(grade, 0)
-            if count > 0:
-                percentage = f"{(count/total)*100:.1f}%"
-                grade_data.append([grade, str(count), percentage])
-        
+            count = int(grade_dist.get(grade, 0) or 0)
+            if total > 0:
+                percentage = f"{(count / total) * 100:.1f}%"
+            else:
+                percentage = "0.0%"
+            # 0건일 때도 표에 표시하려면 if 제거
+            grade_data.append([grade, str(count), percentage])
+
         grade_table = Table(grade_data, colWidths=[1.5*inch, 1.5*inch, 1.5*inch])
         grade_table.setStyle(TableStyle([
             ('FONT', (0, 0), (-1, -1), self.korean_font, 10),
@@ -629,43 +635,44 @@ class ReportAgent:
         """강점과 약점 분석"""
         stats = report_data["statistics"]
         patents = report_data["patents_summary"]
-        
+
         strengths = []
         weaknesses = []
-        
+
         # 독창성 분석
         if stats['avg_originality_score'] >= 0.8:
             strengths.append(f"High technical originality (avg: {stats['avg_originality_score']:.3f})")
         elif stats['avg_originality_score'] < 0.6:
-            weaknesses.append(f"Low originality score indicates need for more innovative approaches")
-        
+            weaknesses.append("Low originality score indicates need for more innovative approaches")
+
         # 시장성 분석
         if stats['avg_market_score'] >= 0.7:
             strengths.append(f"Strong market potential (avg: {stats['avg_market_score']:.3f})")
         elif stats['avg_market_score'] < 0.5:
-            weaknesses.append(f"Limited market readiness requires strategic positioning")
-        
-        # 등급 분포 분석
+            weaknesses.append("Limited market readiness requires strategic positioning")
+
+        # 등급 분포 분석 (분모 0 가드)
         grade_dist = stats['grade_distribution']
         s_and_a = grade_dist.get('S', 0) + grade_dist.get('A', 0)
-        total = report_data['total_patents_analyzed']
-        
-        if s_and_a / total >= 0.5:
+        total = int(report_data.get('total_patents_analyzed', 0) or 0)
+
+        if total > 0 and (s_and_a / total) >= 0.5:
             strengths.append(f"High proportion of S/A grade patents ({s_and_a}/{total})")
-        
-        # 특허별 세부 분석
-        high_market_patents = [p for p in patents if p.get('market_score', 0) >= 0.8]
+
+        # 특허별 세부 분석grade_dist = report_data["statistics"]["grade_distribution"]
+
+        high_market_patents = [p for p in patents if (p.get('market_score') or 0) >= 0.8]
         if len(high_market_patents) >= 2:
-            strengths.append(f"Multiple patents with strong commercialization potential")
-        
-        # 기본 강점/약점이 없으면 추가
+            strengths.append("Multiple patents with strong commercialization potential")
+
+        # 기본 강점/약점이 없으면 기본 메시지 추가
         if not strengths:
             strengths.append("Solid foundation for technology development")
-        
         if not weaknesses:
             weaknesses.append("Continue monitoring market trends and competition")
-        
+
         return strengths, weaknesses
+
     
     def _generate_detail_analysis(self, report_data: Dict[str, Any], styles):
         """2. DETAIL ANALYSIS 섹션"""
@@ -759,23 +766,37 @@ class ReportAgent:
                     content.append(Paragraph(f"• {domain}", styles['Bullet']))
                 content.append(Spacer(1, 0.15 * inch))
             
-            # LLM 평가
+            # Investment Analysis 섹션
             llm_eval = patent.get("llm_evaluation", {})
-            if llm_eval:
+            market_rationale = patent.get("market_rationale", "")
+            
+            # LLM 평가 또는 Rationale이 있으면 섹션 생성
+            if llm_eval or market_rationale:
                 content.append(Paragraph("Investment Analysis", styles['Heading3']))
                 content.append(Spacer(1, 0.1 * inch))
                 
-                investment = llm_eval.get("investment_recommendation", "N/A")
-                risk = llm_eval.get("risk_level", "N/A")
-                
-                content.append(Paragraph(f"• <b>Investment Recommendation:</b> {investment}", styles['Bullet']))
-                content.append(Paragraph(f"• <b>Risk Level:</b> {risk}", styles['Bullet']))
-                
-                # 추가 평가 정보
-                reasoning = llm_eval.get("reasoning", "")
-                if reasoning:
+                # Investment Recommendation & Risk Level (LLM 평가에서)
+                if llm_eval:
+                    investment = llm_eval.get("investment_recommendation", "N/A")
+                    risk = llm_eval.get("risk_level", "N/A")
+                    
+                    content.append(Paragraph(f"• <b>Investment Recommendation:</b> {investment}", styles['Bullet']))
+                    content.append(Paragraph(f"• <b>Risk Level:</b> {risk}", styles['Bullet']))
                     content.append(Spacer(1, 0.1 * inch))
-                    content.append(Paragraph(f"<b>Rationale:</b> {reasoning}", styles['BodyText']))
+                
+                # Suitability Rationale (특허의 독창성+시장성 종합 평가)
+                suitability_rationale = llm_eval.get("suitability_rationale", "") if llm_eval else ""
+                if suitability_rationale:
+                    content.append(Paragraph("<b>Overall Assessment (Suitability):</b>", styles['BodyText']))
+                    content.append(Spacer(1, 0.05 * inch))
+                    content.append(Paragraph(suitability_rationale, styles['BodyText']))
+                    content.append(Spacer(1, 0.1 * inch))
+                
+                # Market Rationale (시장성 평가 근거)
+                if market_rationale:
+                    content.append(Paragraph("<b>Market Analysis:</b>", styles['BodyText']))
+                    content.append(Spacer(1, 0.05 * inch))
+                    content.append(Paragraph(market_rationale, styles['BodyText']))
         
         return content
     
@@ -857,7 +878,7 @@ Please summarize the investment attractiveness in 3-4 paragraphs, explaining the
         content.append(Spacer(1, 0.15 * inch))
         
         sources = [
-            "Patent databases: USPTO, EPO, KIPO",
+            "Patent databases: Google Patent",
             "Market analysis: Industry reports and market research data",
             "Technology evaluation: Academic papers and technical documentation",
             "LLM-based analysis: GPT-4 for qualitative assessment"
@@ -1187,6 +1208,399 @@ Please summarize the investment attractiveness in 3-4 paragraphs, explaining the
         return content
 
 
+    # ==================== Multi-Country Extension Methods ====================
+    
+    def generate_report_with_country_comparison(
+        self,
+        all_patents: List[Dict[str, Any]],
+        country_summaries: List[Dict[str, Any]],
+        gap_analysis: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """국가별 비교를 포함한 보고서 생성"""
+        print("\n📊 Generating Multi-Country Comparison Report...")
+        
+        # 기존 데이터 준비
+        report_data = self._prepare_report_data(all_patents)
+        
+        # 국가별 데이터 추가
+        report_data["country_summaries"] = country_summaries
+        report_data["gap_analysis"] = gap_analysis
+        report_data["is_multi_country"] = True
+        
+        # 제목 변경
+        report_data["title"] = f"한국의 {self.tech_name} 기술 경쟁력 보고서"
+        
+        # PDF 생성
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"한국_{self.tech_name}_기술경쟁력보고서_{timestamp}.pdf"
+        pdf_path = self.output_dir / filename
+        
+        # PDF 생성
+        self._create_pdf_with_country_comparison(pdf_path, report_data)
+        
+        print(f"✅ PDF Report: {pdf_path}")
+        
+        # JSON 저장
+        json_filename = f"한국_{self.tech_name}_기술경쟁력보고서_{timestamp}.json"
+        json_path = self.output_dir / json_filename
+        
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(report_data, f, ensure_ascii=False, indent=2)
+        
+        return {
+            "report_pdf_path": str(pdf_path),
+            "report_json_path": str(json_path),
+            "report_title": report_data["title"],
+            "report_generated_at": report_data["generated_at"],
+            "total_patents_analyzed": report_data["total_patents_analyzed"],
+            "avg_originality_score": report_data["statistics"]["avg_originality_score"],
+            "avg_market_score": report_data["statistics"]["avg_market_score"],
+            "grade_distribution": report_data["statistics"]["grade_distribution"]
+        }
+
+    def _create_pdf_with_country_comparison(self, pdf_path, report_data: Dict[str, Any]):
+        """국가별 비교를 포함한 PDF 생성"""
+        
+        # PDF 문서 생성
+        doc = SimpleDocTemplate(
+            str(pdf_path),
+            pagesize=A4,
+            rightMargin=72,
+            leftMargin=72,
+            topMargin=72,
+            bottomMargin=72
+        )
+        
+        # 스타일
+        styles = self._create_styles()
+        
+        # 컨텐츠
+        story = []
+        
+        # 표지 (수정된 제목)
+        story.extend(self._generate_multi_country_cover(report_data, styles))
+        story.append(PageBreak())
+        
+        # 목차
+        story.extend(self._generate_multi_country_toc(report_data, styles))
+        story.append(PageBreak())
+        
+        # 1. SUMMARY (기존)
+        story.extend(self._generate_summary(report_data, styles))
+        story.append(PageBreak())
+        
+        # 2. DETAIL ANALYSIS (기존)
+        story.extend(self._generate_detail_analysis(report_data, styles))
+        story.append(PageBreak())
+        
+        # 3. COUNTRY COMPARISON (신규)
+        story.extend(self._generate_country_comparison_section(report_data, styles))
+        story.append(PageBreak())
+        
+        # 4. TECHNOLOGY GAP ANALYSIS (신규)
+        story.extend(self._generate_gap_analysis_section(report_data, styles))
+        story.append(PageBreak())
+        
+        # 5. REFERENCE (기존)
+        story.extend(self._generate_reference(report_data, styles))
+        story.append(PageBreak())
+        
+        # 6. APPENDIX (기존)
+        story.extend(self._generate_appendix(report_data, styles))
+        
+        # PDF 빌드
+        doc.build(story)
+
+    def _generate_multi_country_cover(self, report_data: Dict[str, Any], styles):
+        """수정된 표지"""
+        content = []
+        
+        content.append(Spacer(1, 2 * inch))
+        
+        # 제목
+        title = Paragraph(report_data["title"], styles['Title'])
+        content.append(title)
+        content.append(Spacer(1, 0.3 * inch))
+        
+        # 부제
+        subtitle = f"{report_data['tech_name']} Technology Global Competitiveness Analysis"
+        content.append(Paragraph(subtitle, styles['Normal']))
+        content.append(Spacer(1, 0.5 * inch))
+        
+        # 분석 국가
+        countries = [c["country_name"] for c in report_data.get("country_summaries", [])]
+        if countries:
+            countries_text = f"<b>분석 국가:</b> {', '.join(countries)}"
+            content.append(Paragraph(countries_text, styles['Normal']))
+            content.append(Spacer(1, 0.2 * inch))
+        
+        # 특허 수
+        total_patents = report_data["total_patents_analyzed"]
+        content.append(Paragraph(f"<b>분석 특허 수:</b> {total_patents}개", styles['Normal']))
+        content.append(Spacer(1, 0.2 * inch))
+        
+        # 날짜
+        date_text = f"<b>보고서 생성일:</b> {report_data['generated_at_kr']}"
+        content.append(Paragraph(date_text, styles['Normal']))
+        
+        return content
+
+    def _generate_multi_country_toc(self, report_data: Dict[str, Any], styles):
+        """수정된 목차"""
+        content = []
+        
+        content.append(Paragraph("TABLE OF CONTENTS", styles['Heading1']))
+        content.append(Spacer(1, 0.3 * inch))
+        
+        toc_items = [
+            "1. SUMMARY",
+            "   1.1 Overview",
+            "   1.2 Key Findings",
+            "   1.3 Strategic Implications",
+            "",
+            "2. DETAIL ANALYSIS",
+            "   2.1 Patent-by-Patent Analysis",
+            "   2.2 Technical Evaluation",
+            "   2.3 Market Evaluation",
+            "",
+            "3. COUNTRY COMPARISON",
+            "   3.1 Country-wise Statistics",
+            "   3.2 Performance Metrics",
+            "   3.3 Grade Distribution",
+            "",
+            "4. TECHNOLOGY GAP ANALYSIS",
+            "   4.1 Korea's Position",
+            "   4.2 Comparative Analysis",
+            "   4.3 Strategic Recommendations",
+            "",
+            "5. REFERENCE",
+            "6. APPENDIX"
+        ]
+        
+        for item in toc_items:
+            if item:
+                content.append(Paragraph(item, styles['Normal']))
+            else:
+                content.append(Spacer(1, 0.1 * inch))
+        
+        return content
+
+    def _generate_country_comparison_section(self, report_data: Dict[str, Any], styles):
+        """3. COUNTRY COMPARISON 섹션"""
+        content = []
+        
+        content.append(Paragraph("3. COUNTRY COMPARISON", styles['Heading1']))
+        content.append(Spacer(1, 0.3 * inch))
+        
+        country_summaries = report_data.get("country_summaries", [])
+        
+        if not country_summaries:
+            content.append(Paragraph("No country data available", styles['BodyText']))
+            return content
+        
+        # 3.1 통계 요약 테이블
+        content.append(Paragraph("3.1 Country-wise Statistics", styles['Heading2']))
+        content.append(Spacer(1, 0.15 * inch))
+        
+        stats_data = [["Country", "Patents", "Avg Orig", "Avg Market", "Avg Suit", "Top Grade"]]
+        
+        for country in country_summaries:
+            if country.get("error") or country.get("successful_analyses", 0) == 0:
+                continue
+            
+            grade_dist = country.get("grade_distribution", {})
+            top_grade = max(grade_dist.keys(), key=lambda k: grade_dist[k]) if grade_dist else "N/A"
+            
+            row = [
+                country["country_name"],
+                str(country["successful_analyses"]),
+                f"{country['avg_originality_score']:.3f}",
+                f"{country['avg_market_score']:.3f}",
+                f"{country['avg_suitability_score']:.3f}",
+                f"{top_grade} ({grade_dist.get(top_grade, 0)})"
+            ]
+            stats_data.append(row)
+        
+        stats_table = Table(stats_data, colWidths=[1.5*inch, 0.8*inch, 0.9*inch, 1*inch, 0.9*inch, 1*inch])
+        stats_table.setStyle(TableStyle([
+            ('FONT', (0, 0), (-1, -1), self.korean_font, 9),
+            ('FONT', (0, 0), (-1, 0), self.korean_bold, 10),
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#3498db')),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (0, -1), 'LEFT'),
+            ('ALIGN', (1, 0), (-1, -1), 'CENTER'),
+            ('GRID', (0, 0), (-1, -1), 1, colors.HexColor('#bdc3c7')),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ('LEFTPADDING', (0, 0), (-1, -1), 8),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+            ('TOPPADDING', (0, 0), (-1, -1), 6),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+        ]))
+        
+        content.append(stats_table)
+        content.append(Spacer(1, 0.3 * inch))
+        
+        # 3.2 국가별 상세
+        content.append(Paragraph("3.2 Country Details", styles['Heading2']))
+        content.append(Spacer(1, 0.15 * inch))
+        
+        for country in country_summaries:
+            if country.get("error") or country.get("successful_analyses", 0) == 0:
+                continue
+            
+            content.append(Paragraph(f"<b>{country['country_name']}</b>", styles['Heading3']))
+            
+            details_text = f"분석 특허: {country['successful_analyses']}개 | " \
+                          f"평균 독창성: {country['avg_originality_score']:.3f} | " \
+                          f"평균 시장성: {country['avg_market_score']:.3f}"
+            
+            content.append(Paragraph(details_text, styles['BodyText']))
+            content.append(Spacer(1, 0.1 * inch))
+        
+        return content
+
+    def _generate_gap_analysis_section(self, report_data: Dict[str, Any], styles):
+        """4. TECHNOLOGY GAP ANALYSIS 섹션"""
+        content = []
+        
+        content.append(Paragraph("4. TECHNOLOGY GAP ANALYSIS", styles['Heading1']))
+        content.append(Spacer(1, 0.3 * inch))
+        
+        gap_analysis = report_data.get("gap_analysis", {})
+        
+        if gap_analysis.get("error"):
+            content.append(Paragraph("Gap analysis not available", styles['BodyText']))
+            return content
+        
+        # 4.1 한국 기준 점수
+        content.append(Paragraph("4.1 Korea's Baseline Scores", styles['Heading2']))
+        content.append(Spacer(1, 0.15 * inch))
+        
+        korea_scores = gap_analysis.get("korea_scores", {})
+        
+        korea_data = [
+            ["Metric", "Score"],
+            ["Originality", f"{korea_scores.get('originality', 0):.4f}"],
+            ["Market", f"{korea_scores.get('market', 0):.4f}"],
+            ["Suitability", f"{korea_scores.get('suitability', 0):.4f}"],
+        ]
+        
+        korea_table = Table(korea_data, colWidths=[2*inch, 1.5*inch])
+        korea_table.setStyle(TableStyle([
+            ('FONT', (0, 0), (-1, -1), self.korean_font, 10),
+            ('FONT', (0, 0), (-1, 0), self.korean_bold, 11),
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#2ecc71')),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+            ('GRID', (0, 0), (-1, -1), 1, colors.HexColor('#bdc3c7')),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ('LEFTPADDING', (0, 0), (-1, -1), 12),
+            ('TOPPADDING', (0, 0), (-1, -1), 8),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
+        ]))
+        
+        content.append(korea_table)
+        content.append(Spacer(1, 0.3 * inch))
+        
+        # 4.2 국가별 격차
+        content.append(Paragraph("4.2 Technology Gap by Country", styles['Heading2']))
+        content.append(Spacer(1, 0.15 * inch))
+        
+        comparisons = gap_analysis.get("comparisons", [])
+        
+        if comparisons:
+            gap_data = [["Country", "Orig Gap", "Market Gap", "Suit Gap", "Overall", "Status"]]
+            
+            for comp in comparisons:
+                row = [
+                    comp["country_name"],
+                    f"{comp['originality_gap']:+.4f}",
+                    f"{comp['market_gap']:+.4f}",
+                    f"{comp['suitability_gap']:+.4f}",
+                    f"{comp['overall_gap']:+.4f}",
+                    comp["status"]
+                ]
+                gap_data.append(row)
+            
+            gap_table = Table(gap_data, colWidths=[1.5*inch, 1*inch, 1*inch, 1*inch, 1*inch, 0.8*inch])
+            gap_table.setStyle(TableStyle([
+                ('FONT', (0, 0), (-1, -1), self.korean_font, 9),
+                ('FONT', (0, 0), (-1, 0), self.korean_bold, 10),
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#e74c3c')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                ('ALIGN', (0, 0), (0, -1), 'LEFT'),
+                ('ALIGN', (1, 0), (-1, -1), 'CENTER'),
+                ('GRID', (0, 0), (-1, -1), 1, colors.HexColor('#bdc3c7')),
+                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+                ('LEFTPADDING', (0, 0), (-1, -1), 8),
+                ('TOPPADDING', (0, 0), (-1, -1), 6),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+            ]))
+            
+            content.append(gap_table)
+            content.append(Spacer(1, 0.3 * inch))
+        
+        # 4.3 전략적 권고사항
+        content.append(Paragraph("4.3 Strategic Recommendations for Korea", styles['Heading2']))
+        content.append(Spacer(1, 0.15 * inch))
+        
+        recommendations = self._generate_korea_recommendations(gap_analysis)
+        
+        for i, rec in enumerate(recommendations, 1):
+            content.append(Paragraph(f"<b>{i}. {rec['title']}</b>", styles['Heading3']))
+            content.append(Paragraph(rec['description'], styles['BodyText']))
+            content.append(Spacer(1, 0.15 * inch))
+        
+        return content
+
+    def _generate_korea_recommendations(self, gap_analysis: Dict[str, Any]) -> List[Dict[str, str]]:
+        """한국을 위한 전략적 권고사항"""
+        recommendations = []
+        
+        comparisons = gap_analysis.get("comparisons", [])
+        
+        if not comparisons:
+            return []
+        
+        leaders = [c for c in comparisons if c["status"] == "Leading"]
+        
+        if leaders:
+            top_leader = leaders[0]
+            
+            recommendations.append({
+                "title": "선도 국가 벤치마킹",
+                "description": f"{top_leader['country_name']}가 전반적인 기술 역량에서 앞서고 있습니다 "
+                              f"(격차: {top_leader['overall_gap']:+.4f}). "
+                              f"해당 국가의 혁신 접근법과 시장 포지셔닝 전략을 분석하여 "
+                              f"한국의 기술 개발 방향성에 반영할 필요가 있습니다."
+            })
+            
+            if top_leader["originality_gap"] > 0.05:
+                recommendations.append({
+                    "title": "기술 혁신 강화",
+                    "description": f"독창성 점수에서 {top_leader['originality_gap']:+.3f}의 격차가 있습니다. "
+                                  f"기초 R&D 투자를 확대하고 breakthrough 기술 개발에 집중하여 "
+                                  f"이 격차를 줄여나가야 합니다."
+                })
+            
+            if top_leader["market_gap"] > 0.05:
+                recommendations.append({
+                    "title": "시장 전략 개선",
+                    "description": f"시장성 점수 격차({top_leader['market_gap']:+.3f})는 상업화 및 "
+                                  f"시장 포지셔닝에서의 개선 여지를 나타냅니다. "
+                                  f"명확한 go-to-market 전략과 산업 파트너십을 구축해야 합니다."
+                })
+        
+        recommendations.append({
+            "title": "지역 협력 확대",
+            "description": "인접 국가들과의 전략적 파트너십을 통해 R&D 비용을 분담하고 "
+                          "더 큰 시장에 접근할 수 있습니다. 특히 한국이 강점을 보이는 "
+                          "분야에서의 협력 기회를 모색해야 합니다."
+        })
+        
+        return recommendations[:4]
+
+
 def pdf_report_agent_node(state: Dict[str, Any]) -> Dict[str, Any]:
     """LangGraph 노드로 사용 가능한 PDF Report Agent"""
     
@@ -1248,3 +1662,5 @@ if __name__ == "__main__":
     agent = ReportAgent(tech_name="NPU", use_llm=False)
     result = agent.generate_report(test_results)
     print(json.dumps(result, indent=2, ensure_ascii=False))
+
+__all__ = ["ReportAgent", "pdf_report_agent_node"]

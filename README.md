@@ -119,7 +119,6 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
 ---
 
 ## 8️⃣ **EVALUATION METRICS**
-## 8️⃣ **EVALUATION METRICS**
 
 ### 1. **기술성 지표 (patent_originality_node)**
 
@@ -161,10 +160,9 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
 - 본 에이전트는 **특허의 시장성 및 상업화 가능성을 정량화**하기 위해 아래와 같은 **시장성 점수(Market Score)** 공식을 사용합니다.
 - **(수식)**  
 
-  $$
-  MarketScore_i = MarketSize_i + GrowthPotential_i + Commercialization_i
-  $$
-
+$$
+MarketScore_i = MarketSize_i + GrowthPotential_i + Commercialization_i
+$$
 - **(세부 구성 요소)**
 
   | 구성 요소 | 점수 범위 | 설명 |
@@ -230,10 +228,9 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
 
 - **(1차 평가)**  
 
-  $$
-  SustainabilityScore = (Originality_{norm} \times 0.55) + (Market \times 0.45)
-  $$
-
+$$
+SustainabilityScore = (Originality_{norm} \times 0.55) + (Market \times 0.45)
+$$
   - **가중치 설계 근거:**  
     - **독창성 55%:** 기술적 독창성의 중요성 반영 (정규화)  
     - **시장성 45%:** 시장 잠재력의 중요성 반영  
@@ -257,40 +254,40 @@ AI 반도체 산업은 **GPU·NPU·PIM 등 차세대 연산 아키텍처의 경�
 ---
 ## 9️⃣ ARCHITECTURE
 
-```markdown
-┌──────────────────────────────┐
-│        LangGraph Flow        │
-└──────────────────────────────┘
-              │
-              ▼
- [PatentSearchAgent]  
- ──▶ (국가별 상위 N 특허 수집 + 초록 요약 + 키워드 추출)
-              │
-              ▼
-        ╔═════════════════════════════════════╗
-        ║         Parallel Evaluation         ║
-        ║ (Logical Parallel, Sequential Run)  ║
-        ╚═════════════════════════════════════╝
-        ┌───────────────┬────────────────┐
-        ▼                               ▼
- [TechEvaluationAgent]          [MarketEvaluationAgent]
- ──▶ 기술 독창성·트렌드 적합성 평가     ──▶ 시장성(규모·성장성·상업화 가능성) 평가
-        └───────────────┴────────────────┘
-                        │
-                        ▼
-                 [SuitabilityAgent]
-                ──▶ 기술성 + 시장성 통합 점수 산출  
-                ──▶ 유망 특허 선별 및 평가 통합
-                        │
-                        ▼
-                   [ReportAgent]
-                ──▶ 상위 특허 기반 보고서 생성
-                        │
-                        ▼
- 📄 **Output:** 한국 AI 반도체 기술경쟁력 보고서  
-      ├─ 국가별 상위 점수 특허 분석  
-      ├─ 기술·시장 통합 인사이트  
-      └─ 국내 적용성 및 리스크 포인트
+```mermaid
+%%{init: {'flowchart': {'htmlLabels': true}}}%%
+flowchart TB
+  H["LangGraph Flow"]
+
+  A["patent_originality_node<br/>국가별 상위 N 특허 수집 · 키워드 추출"]
+
+  subgraph P[Parallel Evaluation]
+    direction LR
+    note1["<i style='font-size:12px'>Logical parallel, sequential run</i>"]
+    T["TechEvaluationAgent<br/>기술성 : 독창성"]
+    M["MarketEvaluationAgent<br/>시장성: 규모/성장성/상업화"]
+  end
+
+  S["SuitabilityAgent<br/>기술+시장 통합 점수 + llm as a judge"]
+  R["ReportAgent<br/>국가별 기술 키워드 기반 특허 분석 보고서 생성"]
+  O["📄 Output:<br/>한국 AI 반도체 기술경쟁력 보고서<br/>- 국가별 특허 분석<br/>- 기술·시장 통합 인사이트<br/>- 국내 적용성/리스크"]
+
+  H --> A --> P
+  note1 --- T
+  note1 --- M
+  T --> S
+  M --> S
+  S --> R --> O
+
+  style H fill:#111827,stroke:#0b1020,color:#ffffff,stroke-width:1px,rx:8,ry:8
+  style A fill:#eef2ff,stroke:#6366f1,color:#111827,stroke-width:1px,rx:12,ry:12
+  style T fill:#eef2ff,stroke:#6366f1,color:#111827,stroke-width:1px,rx:12,ry:12
+  style M fill:#eef2ff,stroke:#6366f1,color:#111827,stroke-width:1px,rx:12,ry:12
+  style S fill:#eef2ff,stroke:#6366f1,color:#111827,stroke-width:1px,rx:12,ry:12
+  style R fill:#eef2ff,stroke:#6366f1,color:#111827,stroke-width:1px,rx:12,ry:12
+  style P fill:#fffde7,stroke:#facc15,color:#111827,stroke-width:1px,rx:14,ry:14
+  style O fill:#fff7ed,stroke:#fb923c,color:#111827,stroke-width:1px,rx:14,ry:14
+
 ```
 
 ---
